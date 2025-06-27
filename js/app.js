@@ -1,13 +1,3 @@
-/*-------------------------------- Data --------------------------------*/
-
-const letters = ["A", "B", "C", "D", "E",... ]
-
-const words = ["AGAIN", ] // option 1 and use split()
-    [
-["P", "L", "A", "I", "N"] // option 2 and use join()
-]
-
-
 /*-------------------------------- Variables --------------------------------*/
 
 let correctWord // The word randomly selected by computer at start of game
@@ -61,7 +51,7 @@ function deleteKey() {
 
 function submitGuess() {
     // like a submit button to enter user's choice for that row
-    // rowLetters = ... (array needs to be populated with their choices)
+    // selectedLetters = ... (array needs to be populated with their choices)
     // computer can then:
     checkForMatch()
     checkForWin()
