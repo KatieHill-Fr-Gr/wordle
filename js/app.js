@@ -2,9 +2,9 @@
 
 const letters = ["A", "B", "C", "D", "E",... ]
 
-const words = ["AGAIN", ] // option 1
+const words = ["AGAIN", ] // option 1 and use split()
     [
-["P", "L", "A", "I", "N"] // option 2
+["P", "L", "A", "I", "N"] // option 2 and use join()
 ]
 
 
@@ -39,6 +39,7 @@ const messageEl = document.getElementById("message")
 
 // * Init function to set up game, word to be chosen at random by computer
 function setUp() {
+    // if boxes !== "", clear them 
     // correctWord is selected from Words array and stored in variable
     // e.g 
     // - const randomIdx = Math.floor(Math.random() * words.length);
@@ -92,7 +93,7 @@ function showMessage() {
     // IF (winner === true) {}
     // messageEl.textContent = "Congrats, you guessed right!"
     // ELSE 
-    // message.El.textContent = `... ${correctWord}` to display correct answer
+    // messageEl.textContent = `The correct answer was ${correctWord}` to display correct answer
 }
 
 /*----------------------------- Event Listeners -----------------------------*/

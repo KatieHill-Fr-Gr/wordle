@@ -10,24 +10,74 @@
 </head>
 
 <body>
-    <!-- game title -->
-    <h1>Wordle</h1>
-    <!-- how to play -->
-    <p></p>
+    <header>
+        <!-- game title -->
+        <h1>Wordle</h1>
+        <!-- how to play -->
+        <p> Guess the five-letter word by choosing letters from the keyboard.
+        </p>
+        <p>
+            If the letter is correct, the box will turn green. If the letter appears somewhere else in the word, the box will turn orange.
+        </p>
+        <p>
+            You get 6 tries in total. Hit play anytime to start a new game.
+        </p>
+    </header>
     <!-- win/lose message -->
-    <p></p>
+    <p id="message"></p>
     <!-- start -->
     <button id="play-button">PLAY</button>
     <!-- Word boxes to be populated -->
-    <section id="boxes"></section>
+    <section id="guesses">
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+    </section>
     <!-- Letter keys to choose from -->
     <section id="keyboard">
         <button id="key">Q</button>
-        <button id="key">U</button>
+        <button id="key">W</button>
         <button id="key">E</button>
         <button id="key">R</button>
         <button id="key">T</button>
         <button id="key">Y</button>
+        <button id="key">U</button>
+        <button id="key">I</button>
+        <button id="key">O</button>
+        <button id="key">P</button>
+        <button id="key">A</button>
+        <button id="key">S</button>
+        <button id="key">D</button>
+        <button id="key">F</button>
+        <button id="key">G</button>
+        <button id="key">H</button>
+        <button id="key">J</button>
+        <button id="key">K</button>
+        <button id="key">L</button>
+        <button id="key">Z</button>
+        <button id="key">X</button>
+        <button id="key">C</button>
+        <button id="key">V</button>
+        <button id="key">B</button>
+        <button id="key">N</button>
+        <button id="key">M</button>
         <button id="enter-button">ENTER</button>
         <button id="delete-button">DELETE</button>
     </section>
