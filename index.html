@@ -20,9 +20,9 @@
         <!-- game title -->
         <h1>Wordle</h1>
         <!-- how to play -->
-        <p> Try and guess the five-letter word. You have six tries. 
-            If you guess the right letter, the box will turn green. 
-            If the letter appears somewhere else in the word, the box will turn orange.
+        <p> Try and guess the five-letter word. You have six tries.
+            If you guess the right letter, the box will turn green. If the letter appears somewhere else in the word,
+            the box will turn orange.
         </p>
         <!-- win/lose message -->
         <p id="message"></p>
@@ -54,34 +54,42 @@
     </section>
     <!-- Letter keys to choose from -->
     <section id="keyboard">
-        <button id="key">Q</button>
-        <button id="key">W</button>
-        <button id="key">E</button>
-        <button id="key">R</button>
-        <button id="key">T</button>
-        <button id="key">Y</button>
-        <button id="key">U</button>
-        <button id="key">I</button>
-        <button id="key">O</button>
-        <button id="key">P</button>
-        <button id="key">A</button>
-        <button id="key">S</button>
-        <button id="key">D</button>
-        <button id="key">F</button>
-        <button id="key">G</button>
-        <button id="key">H</button>
-        <button id="key">J</button>
-        <button id="key">K</button>
-        <button id="key">L</button>
-        <button id="key">Z</button>
-        <button id="key">X</button>
-        <button id="key">C</button>
-        <button id="key">V</button>
-        <button id="key">B</button>
-        <button id="key">N</button>
-        <button id="key">M</button>
-        <button id="enter-button">ENTER</button>
-        <button id="delete-button">DELETE</button>
+        <div class="row">
+            <div class="key">Q</div>
+            <div class="key">W</div>
+            <div class="key">E</div>
+            <div class="key">R</div>
+            <div class="key">T</div>
+            <div class="key">Y</div>
+            <div class="key">U</div>
+            <div class="key">I</div>
+            <div class="key">O</div>
+            <div class="key">P</div>
+        </div>
+        <div class="row">
+            <div class="key">A</div>
+            <div class="key">S</div>
+            <div class="key">D</div>
+            <div class="key">F</div>
+            <div class="key">G</div>
+            <div class="key">H</div>
+            <div class="key">J</div>
+            <div class="key">K</div>
+            <div class="key">L</div>
+        </div>
+        <div class="row">
+            <div class="key">Z</div>
+            <div class="key">X</div>
+            <div class="key">C</div>
+            <div class="key">V</div>
+            <div class="key">B</div>
+            <div class="key">N</div>
+            <div class="key">M</div>
+        </div>
+        <div class="row">
+            <div id="enter">ENTER</div>
+            <div id="delete">DELETE</div>
+        </div>
     </section>
 
 </body>

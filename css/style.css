@@ -5,7 +5,7 @@
 body {
     background-color: white;
     margin: 0;
-    font-family: "Merriweather", sans-serif;
+    font-family: "Roboto";
     font-size: 20px;
 }
 
@@ -29,13 +29,14 @@ p {
     width: 500px;
     margin: auto, 20px;
     text-align: center;
-    font-family: "Merriweather", sans-serif;
+    font-family: "Roboto";
     font-size: 0.75em;
 }
 
 #message {}
 
 #play-button {
+    font-family: "Roboto";
     background-color: #086623;
     border: none;
     border-radius: 30px;
@@ -45,17 +46,48 @@ p {
     font-size: 0.75em;
 }
 
-#guesses {}
+#guesses {
+    width: 300px;
+}
+
+#guesses .row {}
 
 .box {}
 
 #keyboard {
-    width: 500px;
-
+    width: 600px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin: 0 auto;
+    margin-top: 50px; 
 }
 
-#key {}
+#keyboard .row {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    font-size: 0.75em;
+}
 
-#enter-button {}
+.key {
+    background-color: lightgrey;
+    padding: 20px;
+    border: solid, 1px;
+    border-color: darkgray;
+}
 
-#delete-button {}
+#enter {
+    background-color: lightgrey;
+    padding: 10px;
+    border: solid, 1px;
+    border-color: darkgray;
+}
+
+#delete {
+    background-color: lightgrey;
+    padding: 10px;
+    border: solid, 1px;
+    border-color: darkgray;
+}
