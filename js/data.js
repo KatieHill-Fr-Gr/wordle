@@ -568,7 +568,8 @@ const words = [
     "WRONG", 
     "WROTE", 
     "YOUNG", 
-    "YOUTH"
+    "YOUTH",
+    "ZEBRA"
 ]
 
 

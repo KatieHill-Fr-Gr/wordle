@@ -1,51 +1,61 @@
-body. {
+* {
+    box-sizing: border-box;
+}
 
+body {
+    background-color: white;
+    margin: 0;
+    font-family: "Merriweather", sans-serif;
+    font-size: 20px;
 }
 
 header {
-
+    background-color: white;
+    padding: 5px 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
 }
 
 h1 {
-
+    font-family: "Oswald", sans-serif;
+    margin: 50px 20px 20px 20px;
 }
 
-h2 {
-
-}
+h2 {}
 
 p {
-
+    width: 500px;
+    margin: auto, 20px;
+    text-align: center;
+    font-family: "Merriweather", sans-serif;
+    font-size: 0.75em;
 }
 
-#message {
-
-}
+#message {}
 
 #play-button {
-
+    background-color: #086623;
+    border: none;
+    border-radius: 30px;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    font-size: 0.75em;
 }
 
-#guesses {
+#guesses {}
 
-}
-
-.box {
-
-}
+.box {}
 
 #keyboard {
+    width: 500px;
 
 }
 
-#key {
+#key {}
 
-}
+#enter-button {}
 
-#enter-button {
-
-}
-
-#delete-button {
-    
-}
+#delete-button {}

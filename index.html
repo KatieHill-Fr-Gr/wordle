@@ -4,9 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Wordle</title>
+    <link rel="stylesheet" href="./css/style.css">
     <script defer src="./data.js"></script>
     <script defer src="./app.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Oswald:wght@200..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
@@ -14,19 +20,15 @@
         <!-- game title -->
         <h1>Wordle</h1>
         <!-- how to play -->
-        <p> Guess the five-letter word by choosing letters from the keyboard.
+        <p> Try and guess the five-letter word. You have six tries. 
+            If you guess the right letter, the box will turn green. 
+            If the letter appears somewhere else in the word, the box will turn orange.
         </p>
-        <p>
-            If the letter is correct, the box will turn green. If the letter appears somewhere else in the word, the box will turn orange.
-        </p>
-        <p>
-            You get 6 tries in total. Hit play anytime to start a new game.
-        </p>
+        <!-- win/lose message -->
+        <p id="message"></p>
+        <!-- start -->
+        <button id="play-button">PLAY</button>
     </header>
-    <!-- win/lose message -->
-    <p id="message"></p>
-    <!-- start -->
-    <button id="play-button">PLAY</button>
     <!-- Word boxes to be populated -->
     <section id="guesses">
         <div class="box"></div>
