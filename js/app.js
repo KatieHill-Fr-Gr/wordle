@@ -21,7 +21,6 @@ const messageEl = document.getElementById("message")
 
 /*-------------------------------- Functions --------------------------------*/
 
-// * Init function to set up game, word to be chosen at random by computer
 function setUp() {
     if (boxEls.textContent !== "") {
         boxEls.textContent = ""
@@ -34,17 +33,18 @@ function setUp() {
 function selectLetter(e) {
     const letter = e.target.textContent;
     console.log(letter);
-    if (currentBoxIdx < boxEls.length) {  
+    if (currentBoxIdx < boxEls.length) {
         boxEls[currentBoxIdx].textContent = letter;
         currentBoxIdx++;
     }
 }
 
 function deleteLetter() {
-    // if (currentBox.textContent !== "") {
-    //     currentBox.textContent = "";
-    // }
-    // console.log("clicked");
+    if (currentBoxIdx > 0) {
+        currentBoxIdx--; 
+        boxEls[currentBoxIdx].textContent = "";
+    }
+    console.log("Deleted");
 }
 
 function submitGuess() {
@@ -90,7 +90,7 @@ playButton.addEventListener("click", setUp)
 
 letterKeys.forEach((key) => key.addEventListener("click", selectLetter))
 
-// deleteButton.addEventListener("click", deleteLetter)
+deleteButton.addEventListener("click", deleteLetter)
 
 //enterButton.addEventListener("click", submitGuess)
 
