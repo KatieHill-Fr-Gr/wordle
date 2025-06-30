@@ -1,8 +1,8 @@
 /*-------------------------------- Variables --------------------------------*/
 
 let correctWord
-let currentBox // The current box is the next empty one where user adds their letter
-let selectedLetters = [] // User's selected letters in each row
+let currentBoxIdx = 0 // Do this by index??
+let selectedLetters // User's selected letters in each row as one string rather than array
 let winner = false
 
 /*------------------------ Cached Element References ------------------------*/
@@ -24,17 +24,20 @@ const messageEl = document.getElementById("message")
 // * Init function to set up game, word to be chosen at random by computer
 function setUp() {
     if (boxEls.textContent !== "") {
-        boxEls.textContent = "" 
+        boxEls.textContent = ""
     }
     const randomIdx = Math.floor(Math.random() * words.length);
     correctWord = words[randomIdx];
     console.log("New word selected:", correctWord);
 }
 
-function selectLetter() {
-    console.log("clicked");
-    // - get the box index like const currentBox = words[index]
-    // - add the key letter to the .textContent of the box
+function selectLetter(e) {
+    const letter = e.target.textContent;
+    console.log(letter);
+    if (currentBoxIdx < boxEls.length) {  
+        boxEls[currentBoxIdx].textContent = letter;
+        currentBoxIdx++;
+    }
 }
 
 function deleteLetter() {
