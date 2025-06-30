@@ -71,9 +71,11 @@ p {
 .box {
     width: 48px;
     height: 48px;
-    padding: 25px;
+    padding: 10px;
     border: solid 1px;
     border-color: darkgray;
+    text-align: center;
+    font-size: 1.5em;
 }
 
 #keyboard {
