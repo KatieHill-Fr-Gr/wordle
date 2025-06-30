@@ -22,9 +22,12 @@ const messageEl = document.getElementById("message")
 /*-------------------------------- Functions --------------------------------*/
 
 function setUp() {
-    if (boxEls.textContent !== "") {
-        boxEls.textContent = ""
-    }
+    boxEls.forEach((boxEl) => {
+        if (boxEl.textContent !== "") {
+            boxEl.textContent = ""
+        }
+    })
+    currentBoxIdx = 0;
     const randomIdx = Math.floor(Math.random() * words.length);
     correctWord = words[randomIdx];
     console.log("New word selected:", correctWord);
@@ -41,7 +44,7 @@ function selectLetter(e) {
 
 function deleteLetter() {
     if (currentBoxIdx > 0) {
-        currentBoxIdx--; 
+        currentBoxIdx--;
         boxEls[currentBoxIdx].textContent = "";
     }
     console.log("Deleted");
