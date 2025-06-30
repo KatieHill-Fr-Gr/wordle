@@ -2,7 +2,7 @@
 
 let correctWord
 let currentBoxIdx = 0
-let selectedLetters = ""
+let selectedLetters = []
 let winner = false
 
 /*------------------------ Cached Element References ------------------------*/
@@ -40,7 +40,7 @@ function selectLetter(e) {
         boxEls[currentBoxIdx].textContent = letter;
         currentBoxIdx++;
     } 
-    selectedLetters += letter;
+    selectedLetters.push(letter);
     console.log(selectedLetters);
 }
 
@@ -50,12 +50,11 @@ function deleteLetter() {
         boxEls[currentBoxIdx].textContent = "";
     }
     console.log("Deleted");
+    selectedLetters.pop();
 }
 
 function submitGuess() {
-    // like a submit button to enter user's choice for that row
-    // selectedLetters = ... (array needs to be populated with their choices)
-
+    console.log("clicked!");
     // Ensure user can only submit a real five-letter word (from the list?)
     // THEN: 
     // checkForMatch()
