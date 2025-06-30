@@ -44,6 +44,11 @@ p {
     padding: 15px 32px;
     text-align: center;
     font-size: 0.75em;
+    transition: transform 0.2s ease;
+}
+
+#play-button:active {
+    transform: scale(0.9);
 }
 
 
