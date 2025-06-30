@@ -22,6 +22,7 @@ const messageEl = document.getElementById("message")
 /*-------------------------------- Functions --------------------------------*/
 
 function setUp() {
+    selectedLetters = []
     boxEls.forEach((boxEl) => {
         if (boxEl.textContent !== "") {
             boxEl.textContent = ""
@@ -68,13 +69,13 @@ function nextGuess() {
     // ELSE 
     // Use index < 5 && > 0, < 7 && > 4, etc to specify each row
 }
-function checkForMatch(playerLetter) {
+function checkForMatch() {
     // IF letters match, the box turns green // query selector here? splice?
     // ELSE IF letter matches another box, current box turns orange
     // ELSE nothing happens/box stays grey - no need to code this
 }
 
-function checkForWin(playerGuess) {
+function checkForWin() {
     // IF  all boxes have been filled by user and all match, 
     // words.forEach((word) => {board[word[0]
     // - winner = true
