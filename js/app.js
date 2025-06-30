@@ -55,7 +55,9 @@ function deleteLetter() {
 }
 
 function submitGuess() {
-    console.log("clicked!");
+    const guess = selectedLetters.join("");
+    console.log(guess);
+
     // Ensure user can only submit a real five-letter word (from the list?)
     // THEN: 
     // checkForMatch()
