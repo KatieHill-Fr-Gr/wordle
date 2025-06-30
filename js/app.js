@@ -1,8 +1,8 @@
 /*-------------------------------- Variables --------------------------------*/
 
 let correctWord
-let currentBoxIdx = 0 // Do this by index??
-let selectedLetters // User's selected letters in each row as one string rather than array
+let currentBoxIdx = 0
+let selectedLetters = ""
 let winner = false
 
 /*------------------------ Cached Element References ------------------------*/
@@ -39,7 +39,9 @@ function selectLetter(e) {
     if (currentBoxIdx < boxEls.length) {
         boxEls[currentBoxIdx].textContent = letter;
         currentBoxIdx++;
-    }
+    } 
+    selectedLetters += letter;
+    console.log(selectedLetters);
 }
 
 function deleteLetter() {
@@ -53,11 +55,14 @@ function deleteLetter() {
 function submitGuess() {
     // like a submit button to enter user's choice for that row
     // selectedLetters = ... (array needs to be populated with their choices)
-    // computer can then:
+
+    // Ensure user can only submit a real five-letter word (from the list?)
+    // THEN: 
     // checkForMatch()
     // checkForWin()
-    // nextGuess()
 }
+
+// * SMALLER FUNCTIONS
 
 function nextGuess() {
     // IF (winner === true) {return} out of function as game ends
@@ -95,6 +100,6 @@ letterKeys.forEach((key) => key.addEventListener("click", selectLetter))
 
 deleteButton.addEventListener("click", deleteLetter)
 
-//enterButton.addEventListener("click", submitGuess)
+enterButton.addEventListener("click", submitGuess)
 
 
