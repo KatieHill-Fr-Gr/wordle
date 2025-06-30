@@ -1,6 +1,6 @@
 /*-------------------------------- Variables --------------------------------*/
 
-let correctWord 
+let correctWord
 let currentBox // The current box is the next empty one where user adds their letter
 let selectedLetters = [] // User's selected letters in each row
 let winner = false
@@ -24,27 +24,24 @@ const messageEl = document.getElementById("message")
 // * Init function to set up game, word to be chosen at random by computer
 function setUp() {
     if (boxEls.textContent !== "") {
-        boxEls.textContent === ""
+        boxEls.textContent = "" 
     }
     const randomIdx = Math.floor(Math.random() * words.length);
     correctWord = words[randomIdx];
     console.log("New word selected:", correctWord);
 }
 
-
-// * This adds the letter from key clicked by user
-function selectKey() {
+function selectLetter() {
+    console.log("clicked");
     // - get the box index like const currentBox = words[index]
     // - add the key letter to the .textContent of the box
 }
 
-function deleteKey() {
+function deleteLetter() {
     // if (currentBox.textContent !== "") {
-    //     currentBox.textContent === ""
+    //     currentBox.textContent = "";
     // }
-    // if the box is not empty (!== "")
-    // clear box by changing currentBox.textContent = ""
-
+    // console.log("clicked");
 }
 
 function submitGuess() {
@@ -88,7 +85,10 @@ function showMessage() {
 
 playButton.addEventListener("click", setUp)
 
-// letterKeys.forEach((key) => key.addEventListener("click", selectKey())) 
+letterKeys.forEach((key) => key.addEventListener("click", selectLetter))
 
-// enterButton.addEventListener("click", submitGuess())
+// deleteButton.addEventListener("click", deleteLetter)
+
+//enterButton.addEventListener("click", submitGuess)
+
 
