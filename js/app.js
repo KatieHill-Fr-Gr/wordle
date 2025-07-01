@@ -80,16 +80,6 @@ function submitGuess() {
     nextGuess()
 }
 
-function showMessage() {
-    if (winner === true) {
-        messageEl.textContent = "Congrats, you guessed right!"
-    }
-    // else if (all boxes filled && winner === false) {
-    //     messageEl.textContent = `Bad luck! The correct answer was ${correctWord}.`
-    // }
-    // This function should end game 
-}
-
 // * SMALLER FUNCTIONS
 
 function checkForMatch() {
@@ -101,18 +91,23 @@ function checkForMatch() {
 }
 
 function checkForDiffPosition() {
-    correctWord.split("").forEach((char, index) => {
-        if (selectedLetters.includes(char) && selectedLetters[index] !== char) {
+    selectedLetters.forEach((letter, index) => {
+        if (correctWord.includes(letter) && correctWord[index] !== letter) {
             rowBoxes[index].classList.add("diff-position");
         }
     })
 }
+
 
 function checkForWin() {
     const guess = selectedLetters.join("");
     console.log(guess);
     if (guess === correctWord) {
         winner = true;
+        console.log(winner);
+        messageEl.textContent = "Congrats, you guessed right!"
+    } else if (boxEls !== "" && winner === false) {
+        messageEl.textContent = `Bad luck! The correct answer was ${correctWord}.`
         console.log(winner);
     } else {
         return
@@ -122,8 +117,6 @@ function checkForWin() {
 function nextGuess() {
     selectedLetters = []
 }
-
-
 
 /*----------------------------- Event Listeners -----------------------------*/
 
