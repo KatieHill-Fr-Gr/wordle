@@ -26,6 +26,12 @@ const messageEl = document.getElementById("message")
 /*-------------------------------- Functions --------------------------------*/
 
 function setUp() {
+    clearBoxes()
+    setCorrectWord()
+}
+
+// Need to combine boxEls and rowBoxes to make code cleaner
+function clearBoxes() {
     selectedLetters = []
     boxEls.forEach((boxEl) => {
         if (boxEl.textContent !== "") {
@@ -33,10 +39,14 @@ function setUp() {
         }
     })
     currentBoxIdx = 0;
+}
+
+function setCorrectWord() {
     const randomIdx = Math.floor(Math.random() * words.length);
     correctWord = words[randomIdx];
     console.log("New word selected:", correctWord);
 }
+
 
 function selectLetter(e) {
     const letter = e.target.textContent;
@@ -59,12 +69,12 @@ function deleteLetter() {
 }
 
 function submitGuess() {
+    // if selectedLetters.join("") matches word in words array?? 
+    // Ensure user can only submit a real five-letter word (from the list?)
     checkForMatch()
     checkForDiffPosition()
     checkForWin()
     nextGuess()
-
-    // Ensure user can only submit a real five-letter word (from the list?)
 }
 
 function showMessage() {
