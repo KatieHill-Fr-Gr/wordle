@@ -199,7 +199,7 @@ const words = [
     "FAITH", 
     "FALSE", 
     "FAULT", 
-    "FIBRE", 
+    "FIBRE",
     "FIELD", 
     "FIFTH", 
     "FIFTY", 

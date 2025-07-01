@@ -78,6 +78,10 @@ p {
     font-size: 1.5em;
 }
 
+.match {
+    color: #086623; 
+}
+
 #keyboard {
     width: 600px;
     display: flex;

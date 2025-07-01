@@ -40,7 +40,7 @@ function selectLetter(e) {
     if (currentBoxIdx < boxEls.length) {
         boxEls[currentBoxIdx].textContent = letter;
         currentBoxIdx++;
-    } 
+    }
     selectedLetters.push(letter);
     console.log(selectedLetters);
 }
@@ -57,34 +57,41 @@ function deleteLetter() {
 function submitGuess() {
     const guess = selectedLetters.join("");
     console.log(guess);
+    checkForMatch()
 
     // Ensure user can only submit a real five-letter word (from the list?)
-    // THEN: 
-    // checkForMatch()
+
     // checkForWin()
 }
 
 // * SMALLER FUNCTIONS
 
-function nextGuess() {
-    // IF (winner === true) {return} out of function as game ends
-    // ELSE 
-    // Use index < 5 && > 0, < 7 && > 4, etc to specify each row
-}
 function checkForMatch() {
-    // IF letters match, the box turns green // query selector here? splice?
-    // ELSE IF letter matches another box, current box turns orange
+//    for (let char of selectedLetters) {
+//         if (char === correctWord[index]) {
+//             boxEls[index].classList.add("match");
+//         }
+//     }
+    // ELSE IF letter matches another box, current box turns purple?
     // ELSE nothing happens/box stays grey - no need to code this
 }
 
 function checkForWin() {
-    // IF  all boxes have been filled by user and all match, 
-    // words.forEach((word) => {board[word[0]
-    // - winner = true
-    // - showMessage() = "Congrats, you won"
-    // ELSE
-    // return out of function
+    if (selectedLetters === correctWord) {
+        winner = true;
+        // showMessage()
+    } else {
+        return
+    }
 }
+
+function nextGuess() {
+    // clear selected letter array ready for next guess
+    // IF (winner === true) {return} out of function as game ends
+    // ELSE 
+    // Use index < 5 && > 0, < 7 && > 4, etc to specify each row
+}
+
 
 // * This displays one of two messages: user wins/user loses and can try again
 function showMessage() {
