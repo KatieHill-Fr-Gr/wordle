@@ -39,6 +39,9 @@ function clearBoxes() {
         }
     })
     currentBoxIdx = 0;
+    boxEls.forEach((boxEl) => {
+        boxEl.classList.remove("match", "diff-position")
+    })
 }
 
 function setCorrectWord() {
