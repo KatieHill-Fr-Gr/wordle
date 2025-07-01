@@ -1,8 +1,10 @@
 /*-------------------------------- Variables --------------------------------*/
 
-let correctWord
-let currentBoxIdx = 0
-let currentRowIdx = 0
+let correctWord;
+let currentBoxIdx = 0;
+let row;
+let currentRow;
+let currentRowIdx = 0;
 let selectedLetters = []
 let winner = false
 
@@ -18,17 +20,16 @@ const enterButton = document.getElementById("enter")
 
 const deleteButton = document.getElementById("delete")
 
-const row = document.querySelector(`.row[data-row="${currentRowIdx}"]`);
-
-const currentRow = row.querySelectorAll(".box"); 
-
 const messageEl = document.getElementById("message")
 
 /*-------------------------------- Functions --------------------------------*/
 
+// * Initialise new game when user clicks "play"
+
 function setUp() {
     clearBoxes()
     setCorrectWord()
+    updateCurrentRow()
 }
 
 function clearBoxes() {
@@ -50,6 +51,12 @@ function setCorrectWord() {
     console.log("New word selected:", correctWord);
 }
 
+function updateCurrentRow() {
+    row = document.querySelector(`[data-row="${currentRowIdx}"]`);
+    currentRow = row.querySelectorAll(".box");
+}
+
+// * Allow user to enter and delete letters, then submit their guess
 
 function selectLetter(e) {
     const letter = e.target.textContent;
@@ -73,13 +80,16 @@ function deleteLetter() {
 
 function submitGuess() {
     // Ensure user can only submit a real five-letter word (from the list?)
+    updateCurrentRow()
+    console.log('currentRowIdx:', currentRowIdx);
+    console.log('currentRow:', currentRow);
     checkForMatch()
     checkForDiffPosition()
     checkForWin()
     nextGuess()
 }
 
-// * SMALLER FUNCTIONS
+// * Check against the correctWord for matching letters, positions, and whole word
 
 function checkForMatch() {
     selectedLetters.forEach((char, index) => {
@@ -97,7 +107,6 @@ function checkForDiffPosition() {
     })
 }
 
-
 function checkForWin() {
     const guess = selectedLetters.join("");
     console.log(guess);
@@ -114,9 +123,15 @@ function checkForWin() {
     }
 }
 
+// * Allows user to move to next row if current guess is incorrect
+
+
 function nextGuess() {
+    currentRowIdx++;
     selectedLetters = []
+    updateCurrentRow()
 }
+
 
 /*----------------------------- Event Listeners -----------------------------*/
 
