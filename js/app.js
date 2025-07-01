@@ -72,7 +72,7 @@ function submitGuess() {
 function checkForMatch() {
       selectedLetters.forEach((char, index) => {
         if (char === correctWord[index]) {
-            row.classList.add("match");
+            rowBoxes[index].classList.add("match");
         }
     })
     // ELSE IF letter matches another box, current box turns purple?
