@@ -2,6 +2,7 @@
 
 let correctWord
 let currentBoxIdx = 0
+let currentRowIdx = 0
 let selectedLetters = []
 let winner = false
 
