@@ -19,6 +19,7 @@ const enterButton = document.getElementById("enter")
 const deleteButton = document.getElementById("delete")
 
 const row = document.querySelector(`.row[data-row="${currentRowIdx}"]`);
+const rowBoxes = row.querySelectorAll(".box"); // Think about refactoring so all code is "row-scoped logic"
 
 const messageEl = document.getElementById("message")
 
@@ -58,9 +59,8 @@ function deleteLetter() {
 }
 
 function submitGuess() {
-    const guess = selectedLetters.join("");
-    console.log(guess);
     checkForMatch()
+    checkForWin()
 
     // Ensure user can only submit a real five-letter word (from the list?)
 
@@ -70,18 +70,21 @@ function submitGuess() {
 // * SMALLER FUNCTIONS
 
 function checkForMatch() {
-//    for (let char of selectedLetters) {
-//         if (char === correctWord[index]) {
-//             boxEls[index].classList.add("match");
-//         }
-//     }
+      selectedLetters.forEach((char, index) => {
+        if (char === correctWord[index]) {
+            row.classList.add("match");
+        }
+    })
     // ELSE IF letter matches another box, current box turns purple?
     // ELSE nothing happens/box stays grey - no need to code this
 }
 
 function checkForWin() {
-    if (selectedLetters === correctWord) {
+    const guess = selectedLetters.join("");
+    console.log(guess);
+    if (guess === correctWord) {
         winner = true;
+        console.log(winner);
         // showMessage()
     } else {
         return
