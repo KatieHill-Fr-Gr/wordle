@@ -8,7 +8,7 @@ let winner = false
 
 /*------------------------ Cached Element References ------------------------*/
 
-const boxEls = document.querySelectorAll(".box")
+const allBoxes = document.querySelectorAll(".box")
 
 const letterKeys = document.querySelectorAll(".key")
 
@@ -19,7 +19,8 @@ const enterButton = document.getElementById("enter")
 const deleteButton = document.getElementById("delete")
 
 const row = document.querySelector(`.row[data-row="${currentRowIdx}"]`);
-const rowBoxes = row.querySelectorAll(".box"); // Think about refactoring so all code is "row-scoped logic"
+
+const currentRow = row.querySelectorAll(".box"); 
 
 const messageEl = document.getElementById("message")
 
@@ -30,17 +31,16 @@ function setUp() {
     setCorrectWord()
 }
 
-// Need to combine boxEls and rowBoxes to make code cleaner
 function clearBoxes() {
     selectedLetters = []
-    boxEls.forEach((boxEl) => {
-        if (boxEl.textContent !== "") {
-            boxEl.textContent = ""
+    allBoxes.forEach((box) => {
+        if (box.textContent !== "") {
+            box.textContent = ""
         }
     })
     currentBoxIdx = 0;
-    boxEls.forEach((boxEl) => {
-        boxEl.classList.remove("match", "diff-position")
+    allBoxes.forEach((box) => {
+        box.classList.remove("match", "diff-position")
     })
 }
 
@@ -54,8 +54,8 @@ function setCorrectWord() {
 function selectLetter(e) {
     const letter = e.target.textContent;
     console.log(letter);
-    if (currentBoxIdx < boxEls.length) {
-        boxEls[currentBoxIdx].textContent = letter;
+    if (currentBoxIdx < allBoxes.length) {
+        allBoxes[currentBoxIdx].textContent = letter;
         currentBoxIdx++;
     }
     selectedLetters.push(letter);
@@ -65,14 +65,13 @@ function selectLetter(e) {
 function deleteLetter() {
     if (currentBoxIdx > 0) {
         currentBoxIdx--;
-        boxEls[currentBoxIdx].textContent = "";
+        allBoxes[currentBoxIdx].textContent = "";
     }
     console.log("Deleted");
     selectedLetters.pop();
 }
 
 function submitGuess() {
-    // if selectedLetters.join("") matches word in words array?? 
     // Ensure user can only submit a real five-letter word (from the list?)
     checkForMatch()
     checkForDiffPosition()
@@ -85,7 +84,7 @@ function submitGuess() {
 function checkForMatch() {
     selectedLetters.forEach((char, index) => {
         if (char === correctWord[index]) {
-            rowBoxes[index].classList.add("match");
+            currentRow[index].classList.add("match");
         }
     })
 }
@@ -93,7 +92,7 @@ function checkForMatch() {
 function checkForDiffPosition() {
     selectedLetters.forEach((letter, index) => {
         if (correctWord.includes(letter) && correctWord[index] !== letter) {
-            rowBoxes[index].classList.add("diff-position");
+            currentRow[index].classList.add("diff-position");
         }
     })
 }
@@ -102,11 +101,12 @@ function checkForDiffPosition() {
 function checkForWin() {
     const guess = selectedLetters.join("");
     console.log(guess);
+    const allBoxesFilled = Array.from(allBoxes).every(box => box.value !== "")
     if (guess === correctWord) {
         winner = true;
         console.log(winner);
         messageEl.textContent = "Congrats, you guessed right!"
-    } else if (boxEls !== "" && winner === false) {
+    } else if (allBoxesFilled && winner === false) {
         messageEl.textContent = `Bad luck! The correct answer was ${correctWord}.`
         console.log(winner);
     } else {
