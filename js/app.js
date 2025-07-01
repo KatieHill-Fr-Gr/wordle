@@ -61,10 +61,10 @@ function deleteLetter() {
 function submitGuess() {
     checkForMatch()
     checkForWin()
+    nextGuess()
 
     // Ensure user can only submit a real five-letter word (from the list?)
-
-    // checkForWin()
+    // Move to next guess??? 
 }
 
 // * SMALLER FUNCTIONS
@@ -73,7 +73,7 @@ function checkForMatch() {
       selectedLetters.forEach((char, index) => {
         if (char === correctWord[index]) {
             rowBoxes[index].classList.add("match");
-        }
+        } 
     })
     // ELSE IF letter matches another box, current box turns purple?
     // ELSE nothing happens/box stays grey - no need to code this
@@ -92,6 +92,7 @@ function checkForWin() {
 }
 
 function nextGuess() {
+        selectedLetters = []
     // clear selected letter array ready for next guess
     // IF (winner === true) {return} out of function as game ends
     // ELSE 
