@@ -70,10 +70,10 @@ function submitGuess() {
 // * SMALLER FUNCTIONS
 
 function checkForMatch() {
-      selectedLetters.forEach((char, index) => {
+    selectedLetters.forEach((char, index) => {
         if (char === correctWord[index]) {
             rowBoxes[index].classList.add("match");
-        } 
+        }
     })
     // ELSE IF letter matches another box, current box turns purple?
     // ELSE nothing happens/box stays grey - no need to code this
@@ -85,27 +85,25 @@ function checkForWin() {
     if (guess === correctWord) {
         winner = true;
         console.log(winner);
-        // showMessage()
+        showMessage()
     } else {
         return
     }
 }
 
 function nextGuess() {
-        selectedLetters = []
-    // clear selected letter array ready for next guess
-    // IF (winner === true) {return} out of function as game ends
-    // ELSE 
-    // Use index < 5 && > 0, < 7 && > 4, etc to specify each row
+    selectedLetters = []
 }
 
 
 // * This displays one of two messages: user wins/user loses and can try again
 function showMessage() {
-    // IF (winner === true) {}
-    // messageEl.textContent = "Congrats, you guessed right! Hit Play to play again."
-    // ELSE 
-    // messageEl.textContent = `Bad luck! The correct answer was ${correctWord} Hit Play to play again.`
+    if (winner === true) {
+        messageEl.textContent = "Congrats, you guessed right!"
+    } 
+    // else {
+    //     messageEl.textContent = `Bad luck! The correct answer was ${correctWord}.`
+    // }
 }
 
 /*----------------------------- Event Listeners -----------------------------*/
