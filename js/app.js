@@ -18,6 +18,8 @@ const enterButton = document.getElementById("enter")
 
 const deleteButton = document.getElementById("delete")
 
+const row = document.querySelector(`.row[data-row="${currentRowIdx}"]`);
+
 const messageEl = document.getElementById("message")
 
 /*-------------------------------- Functions --------------------------------*/
