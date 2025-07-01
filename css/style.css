@@ -82,6 +82,10 @@ p {
     background-color: #086623; 
 }
 
+.diff-position {
+    background-color: rgb(200, 3, 200); 
+}
+
 #keyboard {
     width: 600px;
     display: flex;

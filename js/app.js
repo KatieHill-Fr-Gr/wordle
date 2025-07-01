@@ -60,11 +60,21 @@ function deleteLetter() {
 
 function submitGuess() {
     checkForMatch()
+    checkForDiffPosition()
     checkForWin()
     nextGuess()
 
     // Ensure user can only submit a real five-letter word (from the list?)
-    // Move to next guess??? 
+}
+
+function showMessage() {
+    if (winner === true) {
+        messageEl.textContent = "Congrats, you guessed right!"
+    }
+    // else if (all boxes filled && winner === false) {
+    //     messageEl.textContent = `Bad luck! The correct answer was ${correctWord}.`
+    // }
+    // This function should end game 
 }
 
 // * SMALLER FUNCTIONS
@@ -75,8 +85,14 @@ function checkForMatch() {
             rowBoxes[index].classList.add("match");
         }
     })
-    // ELSE IF letter matches another box, current box turns purple?
-    // ELSE nothing happens/box stays grey - no need to code this
+}
+
+function checkForDiffPosition() {
+    correctWord.split("").forEach((char, index) => {
+        if (selectedLetters.includes(char) && selectedLetters[index] !== char) {
+            rowBoxes[index].classList.add("diff-position");
+        }
+    })
 }
 
 function checkForWin() {
@@ -85,7 +101,6 @@ function checkForWin() {
     if (guess === correctWord) {
         winner = true;
         console.log(winner);
-        showMessage()
     } else {
         return
     }
@@ -96,15 +111,6 @@ function nextGuess() {
 }
 
 
-// * This displays one of two messages: user wins/user loses and can try again
-function showMessage() {
-    if (winner === true) {
-        messageEl.textContent = "Congrats, you guessed right!"
-    } 
-    // else {
-    //     messageEl.textContent = `Bad luck! The correct answer was ${correctWord}.`
-    // }
-}
 
 /*----------------------------- Event Listeners -----------------------------*/
 
