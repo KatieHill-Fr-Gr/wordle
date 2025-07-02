@@ -66,6 +66,9 @@ function setCorrectWord() {
 }
 
 function startCorrectWordCount() {
+    for (const letter in correctWordLetterCount) {
+        delete correctWordLetterCount[letter];
+    }
     for (const letter of correctWord) {
         correctWordLetterCount[letter] = (correctWordLetterCount[letter] || 0) + 1;
     }
