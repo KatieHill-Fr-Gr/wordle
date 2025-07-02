@@ -1,3 +1,10 @@
+/*-------------------------------- Constants --------------------------------*/
+
+const guessLimit = 6;
+const correctWordLetterCount = {};
+const guessMatchCount = {};
+
+
 /*-------------------------------- Variables --------------------------------*/
 
 let correctWord;
@@ -7,7 +14,6 @@ let currentRow;
 let currentRowIdx = 0;
 let selectedLetters = []
 let currentGuessIdx = 0;
-const guessLimit = 6;
 let winner = false;
 let gameEnd = false;
 
@@ -33,6 +39,7 @@ function setUp() {
     messageEl.textContent = "";
     clearGuesses()
     setCorrectWord()
+    startCorrectWordCount()
     winner = false;
     gameEnd = false;
 }
@@ -58,6 +65,13 @@ function setCorrectWord() {
     console.log("New word selected:", correctWord);
 }
 
+function startCorrectWordCount() {
+        for (const letter of correctWord) {
+        correctWordLetterCount[letter] = (correctWordLetterCount[letter] || 0) + 1;
+    }
+    console.log(correctWordLetterCount);
+}
+
 // * Allow user to enter and delete letters, then submit their guess
 
 function selectLetter(e) {
@@ -65,13 +79,11 @@ function selectLetter(e) {
         return
     }
     const letter = e.target.textContent;
-    console.log(letter);
     if (currentBoxIdx < allBoxes.length) {
         allBoxes[currentBoxIdx].textContent = letter;
         currentBoxIdx++;
     }
     selectedLetters.push(letter);
-    console.log(selectedLetters);
 }
 
 function deleteLetter() {
@@ -82,7 +94,6 @@ function deleteLetter() {
         currentBoxIdx--;
         allBoxes[currentBoxIdx].textContent = "";
     }
-    console.log("Deleted");
     selectedLetters.pop();
 }
 
@@ -93,6 +104,7 @@ function submitGuess() {
     }
     messageEl.textContent = ""
     updateCurrentRow();
+    updateGuessCount();
     checkForMatch();
     checkForDiffPosition();
     checkForWin();
@@ -108,11 +120,20 @@ function updateCurrentRow() {
     currentRow = row.querySelectorAll(".box");
 }
 
+// Clears the properties inside the guess letter count ready for next guess
+function updateGuessCount() {
+        for (const key in guessMatchCount) {
+        delete guessMatchCount[key];
+    }
+}
+
 function checkForMatch() {
     selectedLetters.forEach((char, index) => {
         if (char === correctWord[index]) {
             currentRow[index].classList.add("match");
+            guessMatchCount[char] = (guessMatchCount[char] || 0) + 1; // Updates property INSIDE const, does not reassign it
         }
+        console.log(guessMatchCount);
     })
 }
 
@@ -126,18 +147,13 @@ function checkForDiffPosition() {
 
 function checkForWin() {
     const guess = selectedLetters.join("");
-    console.log(guess);
     if (guess === correctWord) {
         winner = true;
         gameEnd = true;
-        console.log(winner);
-        console.log(gameEnd);
         messageEl.textContent = "Congrats, you guessed right!"
     } else if (currentGuessIdx >= guessLimit - 1 && winner === false) {
         messageEl.textContent = `Bad luck! The correct answer was ${correctWord}.`
         gameEnd = true;
-        console.log(winner);
-        console.log(gameEnd);
     } else {
         return
     }
