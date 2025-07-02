@@ -29,7 +29,6 @@ const messageEl = document.getElementById("message")
 function setUp() {
     clearBoxes()
     setCorrectWord()
-    updateCurrentRow()
 }
 
 function clearBoxes() {
@@ -81,8 +80,6 @@ function deleteLetter() {
 function submitGuess() {
     // Ensure user can only submit a real five-letter word (from the list?)
     updateCurrentRow()
-    console.log('currentRowIdx:', currentRowIdx);
-    console.log('currentRow:', currentRow);
     checkForMatch()
     checkForDiffPosition()
     checkForWin()
@@ -129,7 +126,6 @@ function checkForWin() {
 function nextGuess() {
     currentRowIdx++;
     selectedLetters = []
-    updateCurrentRow()
 }
 
 
