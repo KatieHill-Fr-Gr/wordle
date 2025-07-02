@@ -7,6 +7,7 @@ let currentRow;
 let currentRowIdx = 0;
 let selectedLetters = []
 let winner = false
+let gameEnd = false
 
 /*------------------------ Cached Element References ------------------------*/
 
@@ -75,6 +76,10 @@ function deleteLetter() {
 }
 
 function submitGuess() {
+    if (selectedLetters.length < correctWord.length) {
+        messageEl.textContent = "Make sure you guess all five letters!"
+        return;
+    }
     updateCurrentRow()
     checkForMatch()
     checkForDiffPosition()
@@ -108,14 +113,17 @@ function checkForDiffPosition() {
 function checkForWin() {
     const guess = selectedLetters.join("");
     console.log(guess);
-    const allBoxesFilled = Array.from(allBoxes).every(box => box.value !== "")
     if (guess === correctWord) {
         winner = true;
+        gameEnd = true;
         console.log(winner);
+        console.log(gameEnd);
         messageEl.textContent = "Congrats, you guessed right!"
     } else if (allBoxesFilled && winner === false) {
+        gameEnd = true;
         messageEl.textContent = `Bad luck! The correct answer was ${correctWord}.`
         console.log(winner);
+        console.log(gameEnd);
     } else {
         return
     }
@@ -124,6 +132,9 @@ function checkForWin() {
 // * Allows user to move to next row if current guess is incorrect
 
 function nextGuess() {
+    if (gameEnd === true) {
+        return
+    }
     currentRowIdx++;
     selectedLetters = []
 }
