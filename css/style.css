@@ -16,6 +16,7 @@ header {
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+    gap: 20px;
 }
 
 h1 {
@@ -33,7 +34,9 @@ p {
     font-size: 0.75em;
 }
 
-#message {}
+#message {
+    color: orange;
+}
 
 #play-button {
     font-family: "Roboto";

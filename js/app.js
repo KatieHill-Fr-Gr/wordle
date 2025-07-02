@@ -33,6 +33,8 @@ function setUp() {
     messageEl.textContent = "";
     clearGuesses()
     setCorrectWord()
+    winner = false;
+    gameEnd = false;
 }
 
 function clearGuesses() {
@@ -84,11 +86,13 @@ function submitGuess() {
         return;
     }
     messageEl.textContent = ""
-    updateCurrentRow()
-    checkForMatch()
-    checkForDiffPosition()
-    checkForWin()
-    nextGuess()
+    updateCurrentRow();
+    checkForMatch();
+    checkForDiffPosition();
+    checkForWin();
+    if (gameEnd === false) {
+        nextGuess();
+    }
 }
 
 // * Check against the correctWord for matching letters, positions, and whole word
