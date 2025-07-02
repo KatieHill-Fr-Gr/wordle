@@ -61,6 +61,9 @@ function setCorrectWord() {
 // * Allow user to enter and delete letters, then submit their guess
 
 function selectLetter(e) {
+    if (gameEnd === true) {
+        return
+    }
     const letter = e.target.textContent;
     console.log(letter);
     if (currentBoxIdx < allBoxes.length) {
@@ -72,6 +75,9 @@ function selectLetter(e) {
 }
 
 function deleteLetter() {
+        if (gameEnd === true) {
+        return
+    }
     if (currentBoxIdx > 0) {
         currentBoxIdx--;
         allBoxes[currentBoxIdx].textContent = "";
