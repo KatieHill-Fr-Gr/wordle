@@ -6,8 +6,10 @@ let row;
 let currentRow;
 let currentRowIdx = 0;
 let selectedLetters = []
-let winner = false
-let gameEnd = false
+let currentGuessIdx = 0;
+const guessLimit = 6;
+let winner = false;
+let gameEnd = false;
 
 /*------------------------ Cached Element References ------------------------*/
 
@@ -29,11 +31,11 @@ const messageEl = document.getElementById("message")
 
 function setUp() {
     messageEl.textContent = "";
-    clearBoxes()
+    clearGuesses()
     setCorrectWord()
 }
 
-function clearBoxes() {
+function clearGuesses() {
     selectedLetters = []
     allBoxes.forEach((box) => {
         if (box.textContent !== "") {
@@ -45,6 +47,7 @@ function clearBoxes() {
     allBoxes.forEach((box) => {
         box.classList.remove("match", "diff-position")
     })
+    currentGuessIdx = 0;
 }
 
 function setCorrectWord() {
@@ -80,6 +83,7 @@ function submitGuess() {
         messageEl.textContent = "Make sure you guess all five letters!"
         return;
     }
+    messageEl.textContent = ""
     updateCurrentRow()
     checkForMatch()
     checkForDiffPosition()
@@ -119,9 +123,9 @@ function checkForWin() {
         console.log(winner);
         console.log(gameEnd);
         messageEl.textContent = "Congrats, you guessed right!"
-    } else if (allBoxesFilled && winner === false) {
-        gameEnd = true;
+    } else if (currentGuessIdx >= guessLimit - 1 && winner === false) {
         messageEl.textContent = `Bad luck! The correct answer was ${correctWord}.`
+        gameEnd = true;
         console.log(winner);
         console.log(gameEnd);
     } else {
@@ -135,6 +139,7 @@ function nextGuess() {
     if (gameEnd === true) {
         return
     }
+    currentGuessIdx++;
     currentRowIdx++;
     selectedLetters = []
 }
