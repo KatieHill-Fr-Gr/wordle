@@ -66,7 +66,7 @@ function setCorrectWord() {
 }
 
 function startCorrectWordCount() {
-        for (const letter of correctWord) {
+    for (const letter of correctWord) {
         correctWordLetterCount[letter] = (correctWordLetterCount[letter] || 0) + 1;
     }
     console.log(correctWordLetterCount);
@@ -87,7 +87,7 @@ function selectLetter(e) {
 }
 
 function deleteLetter() {
-        if (gameEnd === true) {
+    if (gameEnd === true) {
         return
     }
     if (currentBoxIdx > 0) {
@@ -120,18 +120,17 @@ function updateCurrentRow() {
     currentRow = row.querySelectorAll(".box");
 }
 
-// Clears the properties inside the guess letter count ready for next guess
 function updateGuessCount() {
-        for (const key in guessMatchCount) {
-        delete guessMatchCount[key];
+    for (const letter in guessMatchCount) {
+        delete guessMatchCount[letter];
     }
 }
 
 function checkForMatch() {
-    selectedLetters.forEach((char, index) => {
-        if (char === correctWord[index]) {
+    selectedLetters.forEach((letter, index) => {
+        if (letter === correctWord[index]) {
             currentRow[index].classList.add("match");
-            guessMatchCount[char] = (guessMatchCount[char] || 0) + 1; // Updates property INSIDE const, does not reassign it
+            guessMatchCount[letter] = (guessMatchCount[letter] || 0) + 1;
         }
         console.log(guessMatchCount);
     })
@@ -139,8 +138,13 @@ function checkForMatch() {
 
 function checkForDiffPosition() {
     selectedLetters.forEach((letter, index) => {
-        if (correctWord.includes(letter) && correctWord[index] !== letter) {
+        if (currentRow[index].classList.contains("match"))
+            return;
+        const alreadyMatched = guessMatchCount[letter] || 0;
+        const frequencyInWord = correctWordLetterCount[letter] || 0;
+        if (frequencyInWord > 0 && alreadyMatched < frequencyInWord) {
             currentRow[index].classList.add("diff-position");
+            guessMatchCount[letter] = alreadyMatched + 1;
         }
     })
 }
