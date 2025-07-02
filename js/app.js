@@ -27,6 +27,7 @@ const messageEl = document.getElementById("message")
 // * Initialise new game when user clicks "play"
 
 function setUp() {
+    messageEl.textContent = "";
     clearBoxes()
     setCorrectWord()
 }
@@ -38,6 +39,7 @@ function clearBoxes() {
             box.textContent = ""
         }
     })
+    currentRowIdx = 0;
     currentBoxIdx = 0;
     allBoxes.forEach((box) => {
         box.classList.remove("match", "diff-position")
@@ -48,11 +50,6 @@ function setCorrectWord() {
     const randomIdx = Math.floor(Math.random() * words.length);
     correctWord = words[randomIdx];
     console.log("New word selected:", correctWord);
-}
-
-function updateCurrentRow() {
-    row = document.querySelector(`[data-row="${currentRowIdx}"]`);
-    currentRow = row.querySelectorAll(".box");
 }
 
 // * Allow user to enter and delete letters, then submit their guess
@@ -78,7 +75,6 @@ function deleteLetter() {
 }
 
 function submitGuess() {
-    // Ensure user can only submit a real five-letter word (from the list?)
     updateCurrentRow()
     checkForMatch()
     checkForDiffPosition()
@@ -87,6 +83,11 @@ function submitGuess() {
 }
 
 // * Check against the correctWord for matching letters, positions, and whole word
+
+function updateCurrentRow() {
+    row = document.querySelector(`[data-row="${currentRowIdx}"]`);
+    currentRow = row.querySelectorAll(".box");
+}
 
 function checkForMatch() {
     selectedLetters.forEach((char, index) => {
@@ -121,7 +122,6 @@ function checkForWin() {
 }
 
 // * Allows user to move to next row if current guess is incorrect
-
 
 function nextGuess() {
     currentRowIdx++;
