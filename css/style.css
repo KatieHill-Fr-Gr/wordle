@@ -4,34 +4,49 @@
 
 body {
     background-color: white;
-    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
     font-family: "Roboto";
-    font-size: 20px;
 }
 
 header {
-    background-color: white;
-    padding: 5px 5px;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
     align-items: center;
-    gap: 20px;
+    gap: 3rem;
 }
 
 h1 {
     font-family: "Oswald", sans-serif;
-    margin: 50px 20px 20px 20px;
+    margin: 1rem;
+    font-size: 2rem;
 }
 
-h2 {}
-
 p {
-    width: 500px;
-    margin: auto, 20px;
+    max-width: 31.25rem;
+    min-width: 15rem;
+    width: 100%;
+    margin: 0 1rem;
     text-align: center;
     font-family: "Roboto";
-    font-size: 0.75em;
+    font-size: 1rem;
+}
+
+.highlight-orange {
+    color: orange;
+    font-weight: bold;
+}
+
+.highlight-green {
+    color: #086623;
+    font-weight: bold;
+}
+
+.highlight-purple {
+    color: #C803C8;
+    font-weight: bold;
 }
 
 #message {
@@ -42,11 +57,11 @@ p {
     font-family: "Roboto";
     background-color: #086623;
     border: none;
-    border-radius: 30px;
+    border-radius: 2rem;
     color: white;
-    padding: 15px 32px;
+    padding: 1rem 2rem;
     text-align: center;
-    font-size: 0.75em;
+    font-size: 1rem;
     transition: transform 0.2s ease;
 }
 
@@ -59,69 +74,71 @@ p {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
+    gap: 0.5rem;
     margin: 0 auto;
-    margin-top: 50px;
+    margin-top: 1rem;
 }
 
 #guesses .row {
     display: flex;
-    gap: 10px;
-    font-size: 0.75em;
+    gap: 0.5rem;
 
 }
 
 .box {
-    width: 48px;
-    height: 48px;
-    padding: 10px;
-    border: solid 1px;
-    border-color: darkgray;
+    background-color: white;
+    width: 3rem;
+    height: 3rem;
+    padding: 0.5rem;
+    border: solid 1px darkgray;
     text-align: center;
-    font-size: 1.5em;
+    font-size: 1.5rem;
 }
 
 .match {
-    background-color: #086623; 
+    background-color: #086623;
 }
 
 .diff-position {
-    background-color: rgb(200, 3, 200); 
+    background-color: #C803C8;
 }
 
 #keyboard {
-    width: 600px;
+    max-width: 37.5rem;
+    min-width: 15rem;
     display: flex;
+    flex-direction: column;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 10px;
-    margin: 50px auto;
+    gap: 0.5rem;
+    margin: 2rem auto;
+    font-size: 1rem;
 }
 
 #keyboard .row {
     display: flex;
-    justify-content: space-between;
-    gap: 10px;
-    font-size: 0.75em;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
 }
 
 .key {
+    width: 3rem;
+    text-align: center;
     background-color: lightgrey;
-    padding: 20px;
-    border: solid 1px;
-    border-color: darkgray;
+    padding: 1rem;
+    border: solid 1px darkgray;
+
 }
 
 #enter {
     background-color: lightgrey;
-    padding: 10px;
-    border: solid 1px;
-    border-color: darkgray;
+    padding: 0.5rem;
+    border: solid 1px darkgray;
 }
 
 #delete {
     background-color: lightgrey;
-    padding: 10px;
-    border: solid 1px;
-    border-color: darkgray;
+    padding: 0.5rem;
+    border: solid 1px darkgray;
 }

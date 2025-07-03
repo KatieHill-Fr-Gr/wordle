@@ -72,7 +72,6 @@ function startCorrectWordCount() {
     for (const letter of correctWord) {
         correctWordLetterCount[letter] = (correctWordLetterCount[letter] || 0) + 1;
     }
-    console.log(correctWordLetterCount);
 }
 
 // * Allow user to enter and delete letters, then submit their guess
@@ -135,7 +134,6 @@ function checkForMatch() {
             currentRow[index].classList.add("match");
             guessMatchCount[letter] = (guessMatchCount[letter] || 0) + 1;
         }
-        console.log(guessMatchCount);
     })
 }
 
