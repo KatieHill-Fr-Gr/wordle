@@ -56,7 +56,7 @@ function clearGuesses() {
     currentRowIdx = 0;
     currentBoxIdx = 0;
     allBoxes.forEach((box) => {
-        box.classList.remove("match", "diff-position")
+        box.classList.remove("match", "diff-position", "animation", "box-flip", "flipped")
     })
     currentGuessIdx = 0;
 }
@@ -144,7 +144,7 @@ function updateGuessCount() {
 function checkForMatch() {
     selectedLetters.forEach((letter, index) => {
         if (letter === correctWord[index]) {
-            currentRow[index].classList.add("match");
+            currentRow[index].classList.add("match", "animation", "box-flip", "flipped");
             guessMatchCount[letter] = (guessMatchCount[letter] || 0) + 1;
         }
     })
@@ -157,7 +157,7 @@ function checkForDiffPosition() {
         const alreadyMatched = guessMatchCount[letter] || 0;
         const frequencyInWord = correctWordLetterCount[letter] || 0;
         if (frequencyInWord > 0 && alreadyMatched < frequencyInWord) {
-            currentRow[index].classList.add("diff-position");
+            currentRow[index].classList.add("diff-position", "animation", "box-flip", "flipped");
             guessMatchCount[letter] = alreadyMatched + 1;
         }
     })

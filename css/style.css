@@ -97,10 +97,26 @@ p {
 
 .match {
     background-color: #086623;
+    border-color: #086623;
 }
 
 .diff-position {
     background-color: #C803C8;
+    border-color: #C803C8;
+}
+
+.animation {
+    perspective: 1000px;
+    display: inline-block;
+}
+
+.animation.box-flip {
+    transform-style: preserve-3d;
+    transition: transform 0.8s ease;
+}
+
+.animation.flipped {
+    transform: rotateY(360deg);
 }
 
 #keyboard {
