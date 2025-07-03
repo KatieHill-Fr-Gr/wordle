@@ -80,7 +80,12 @@ function selectLetter(e) {
     if (gameEnd === true) {
         return
     }
-    const letter = e.target.textContent;
+    let letter 
+    if (e.type ==="click") {
+        letter = e.target.textContent;
+    } else if (e.type === "keydown") {
+        letter= e.key;
+    }
     if (currentBoxIdx < allBoxes.length) {
         allBoxes[currentBoxIdx].textContent = letter;
         currentBoxIdx++;
@@ -185,5 +190,8 @@ letterKeys.forEach((key) => key.addEventListener("click", selectLetter))
 deleteButton.addEventListener("click", deleteLetter)
 
 enterButton.addEventListener("click", submitGuess)
+
+document.addEventListener("keydown", selectLetter);
+
 
 
