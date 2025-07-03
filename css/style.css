@@ -142,3 +142,12 @@ p {
     padding: 0.5rem;
     border: solid 1px darkgray;
 }
+
+@media only screen and (max-width: 480px) {
+    #keyboard {
+        position: sticky;
+        bottom: 0;
+        background-color: white;
+        z-index: 10;
+    }
+}

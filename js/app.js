@@ -206,8 +206,6 @@ document.addEventListener("keydown", function (e) {
     if (gameStart === false || gameEnd === true) {
         return;
     }
-    console.log(e);
-    console.log(typeof e.preventDefault);
     if (e.target.tagName.toUpperCase() === "BUTTON") {
         return;
     }
