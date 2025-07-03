@@ -16,6 +16,7 @@ let selectedLetters = []
 let currentGuessIdx = 0;
 let winner = false;
 let gameEnd = false;
+let gameStart = false;
 
 /*------------------------ Cached Element References ------------------------*/
 
@@ -42,6 +43,7 @@ function setUp() {
     startCorrectWordCount()
     winner = false;
     gameEnd = false;
+    gameStart = true;
 }
 
 function clearGuesses() {
@@ -77,14 +79,17 @@ function startCorrectWordCount() {
 // * Allow user to enter and delete letters, then submit their guess
 
 function selectLetter(e) {
+    if (gameStart === false) {
+        return;
+    }
     if (gameEnd === true) {
         return
     }
-    let letter 
-    if (e.type ==="click") {
+    let letter
+    if (e.type === "click") {
         letter = e.target.textContent;
     } else if (e.type === "keydown") {
-        letter= e.key;
+        letter = e.key;
     }
     if (currentBoxIdx < allBoxes.length) {
         allBoxes[currentBoxIdx].textContent = letter;
@@ -94,6 +99,9 @@ function selectLetter(e) {
 }
 
 function deleteLetter() {
+    if (gameStart === false) {
+        return;
+    }
     if (gameEnd === true) {
         return
     }
@@ -183,7 +191,10 @@ function nextGuess() {
 
 /*----------------------------- Event Listeners -----------------------------*/
 
-playButton.addEventListener("click", setUp)
+playButton.addEventListener("click", () => {
+    setUp();
+    playButton.blur();
+});
 
 letterKeys.forEach((key) => key.addEventListener("click", selectLetter))
 
@@ -191,7 +202,26 @@ deleteButton.addEventListener("click", deleteLetter)
 
 enterButton.addEventListener("click", submitGuess)
 
-document.addEventListener("keydown", selectLetter);
-
-
-
+document.addEventListener("keydown", function (e) {
+    if (gameStart === false) {
+        return;
+    }
+    if (gameEnd === true) {
+        return;
+    }
+    console.log(e);
+    console.log(typeof e.preventDefault);
+    if (e.target.tagName === "BUTTON") {
+        return;
+    }
+    if (e.key.match(/[a-zA-Z]/)) {
+        selectLetter(e);
+        e.preventDefault();
+    } else if (e.key === "Enter") {
+        submitGuess(e);
+        e.preventDefault();
+    } else if (e.key === "Backspace" || e.key === "Delete") {
+        deleteLetter(e);
+        e.preventDefault();
+    }
+});
