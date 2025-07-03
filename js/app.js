@@ -89,7 +89,7 @@ function selectLetter(e) {
     if (e.type === "click") {
         letter = e.target.textContent;
     } else if (e.type === "keydown") {
-        letter = e.key;
+        letter = e.key.toUpperCase();
     }
     if (currentBoxIdx < allBoxes.length) {
         allBoxes[currentBoxIdx].textContent = letter;
@@ -203,18 +203,15 @@ deleteButton.addEventListener("click", deleteLetter)
 enterButton.addEventListener("click", submitGuess)
 
 document.addEventListener("keydown", function (e) {
-    if (gameStart === false) {
-        return;
-    }
-    if (gameEnd === true) {
+    if (gameStart === false || gameEnd === true) {
         return;
     }
     console.log(e);
     console.log(typeof e.preventDefault);
-    if (e.target.tagName === "BUTTON") {
+    if (e.target.tagName.toUpperCase() === "BUTTON") {
         return;
     }
-    if (e.key.match(/[a-zA-Z]/)) {
+    if (e.key.length === 1 && e.key.match(/[a-zA-Z]/)) {
         selectLetter(e);
         e.preventDefault();
     } else if (e.key === "Enter") {
