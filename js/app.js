@@ -117,6 +117,10 @@ function submitGuess() {
         messageEl.textContent = "Make sure you guess all five letters!"
         return;
     }
+    if (selectedLetters.length > correctWord.length) {
+        messageEl.textContent = "You can only guess five letters!"
+        return;
+    }
     messageEl.textContent = ""
     updateCurrentRow();
     updateGuessCount();
