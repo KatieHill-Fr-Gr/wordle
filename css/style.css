@@ -165,5 +165,11 @@ p {
         bottom: 0;
         background-color: white;
         z-index: 10;
+        gap: 0.25rem;
+        margin: 1rem auto;
+        font-size: 0.8rem;
+    }
+    #keyboard .row {
+        gap: 0.25rem;
     }
 }
