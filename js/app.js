@@ -4,10 +4,10 @@ const guessLimit = 6;
 const correctWordLetterCount = {};
 const guessMatchCount = {};
 
-
 /*-------------------------------- Variables --------------------------------*/
 
 let correctWord;
+let wordLength;
 let currentBoxIdx = 0;
 let row;
 let currentRow;
@@ -17,6 +17,7 @@ let currentGuessIdx = 0;
 let winner = false;
 let gameEnd = false;
 let gameStart = false;
+let guessAlreadySubmitted = false;
 
 /*------------------------ Cached Element References ------------------------*/
 
@@ -44,6 +45,8 @@ function setUp() {
     winner = false;
     gameEnd = false;
     gameStart = true;
+    guessAlreadySubmitted = false;
+    wordLength = correctWord.length;
 }
 
 function clearGuesses() {
@@ -64,7 +67,6 @@ function clearGuesses() {
 function setCorrectWord() {
     const randomIdx = Math.floor(Math.random() * words.length);
     correctWord = words[randomIdx];
-    console.log("New word selected:", correctWord);
 }
 
 function startCorrectWordCount() {
@@ -79,10 +81,7 @@ function startCorrectWordCount() {
 // * Allow user to enter and delete letters, then submit their guess
 
 function selectLetter(e) {
-    if (gameStart === false) {
-        return;
-    }
-    if (gameEnd === true) {
+    if (gameStart === false || gameEnd === true || guessAlreadySubmitted === true) {
         return
     }
     let letter
@@ -91,25 +90,26 @@ function selectLetter(e) {
     } else if (e.type === "keydown") {
         letter = e.key.toUpperCase();
     }
-    if (currentBoxIdx < allBoxes.length) {
+    const rowEnd = (currentRowIdx + 1) * wordLength;
+    if (currentBoxIdx < rowEnd) {
         allBoxes[currentBoxIdx].textContent = letter;
         currentBoxIdx++;
+        selectedLetters.push(letter);
     }
-    selectedLetters.push(letter);
 }
 
 function deleteLetter() {
-    if (gameStart === false) {
-        return;
-    }
-    if (gameEnd === true) {
+    if (gameStart === false || gameEnd === true || guessAlreadySubmitted === true) {
         return
     }
-    if (currentBoxIdx > 0) {
+    const rowStart = currentRowIdx * wordLength;
+    if (currentBoxIdx > rowStart) {
         currentBoxIdx--;
         allBoxes[currentBoxIdx].textContent = "";
+        if (selectedLetters.length > 0) {
+            selectedLetters.pop();
+        }
     }
-    selectedLetters.pop();
 }
 
 function submitGuess() {
@@ -127,6 +127,7 @@ function submitGuess() {
     checkForMatch();
     checkForDiffPosition();
     checkForWin();
+    guessAlreadySubmitted = true;
     if (gameEnd === false) {
         nextGuess();
     }
@@ -187,9 +188,11 @@ function nextGuess() {
     if (gameEnd === true) {
         return
     }
+    selectedLetters = [];
     currentGuessIdx++;
     currentRowIdx++;
-    selectedLetters = []
+    currentBoxIdx = currentGuessIdx * correctWord.length;
+    guessAlreadySubmitted = false;
 }
 
 
