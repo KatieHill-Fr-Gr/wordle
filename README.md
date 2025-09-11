@@ -20,7 +20,7 @@ You can play the game here: https://katiehill-fr-gr.github.io/wordle/
 
 The brief was to build a minimum viable product (MVP) that met the following criteria:
 
-* Render the game in the browser using DOM manipulation techniques
+* Render the game in the browser using DOM manipulation techniques.
 * Include win/loss logic and render win/loss messages in HTML. 
 * Include separate HTML, CSS, JavaScript, and JavaScript data files organized in an appropriate directory structure.
 * Include all required features specific to your game:
