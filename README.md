@@ -50,7 +50,7 @@ First, I wrote user stories which I used as a basis for designing my game:
   - What the correct answer was
   - If they can play again
 
-Then I created a basic UX design in Figma (including the chosen font and colour scheme): 
+Then I created a basic UI design in Figma (including the chosen font and colour scheme): 
 
 ![Figma Design](https://res.cloudinary.com/dh0z1a9nd/image/upload/v1757583851/Wordle_a6c739.jpg)
 
