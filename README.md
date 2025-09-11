@@ -37,10 +37,20 @@ The brief was to build a minimum viable product (MVP) that met the following cri
 
 First, I wrote user stories which I used as a basis for designing my game: 
 
-Then I mocked up the user interface in Figma (on desktop and mobile):
+* The player wants to see how quickly they can guess a word
+* The player wants to see a landing page with instructions on how to play
+- Guess a five-letter word 
+- The player gets 6 tries with an empty box for each letter
+- If they guess correctly, get congrats message and score info
+- If they don't guess it, get message saying bad luck, try the next one
+* The player wants to see the keyboard and boxes clearly (labelled + clickable) 
+* The player wants visual feedback on:
+- corrent/incorrect guesses
+- when the game is over, the correct answer, and if they can play again
+
+Then I created a basic UX design in Figma (including the chosen font and colour scheme): 
 
 ![Figma Design](https://res.cloudinary.com/dh0z1a9nd/image/upload/v1757583851/Wordle_a6c739.jpg)
-
 
 
 Finally, I wrote the pseudocode in order to plan out the game logic. My aim here was just to get an idea of the main functions, variables, and datasets I would need. I considered the best way to store the words to guess (as an array of strings or separated into individual letters in nested arrays) and also listed the cached element references and event listeners based on the expected user interactions.
