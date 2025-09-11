@@ -38,15 +38,17 @@ The brief was to build a minimum viable product (MVP) that met the following cri
 First, I wrote user stories which I used as a basis for designing my game: 
 
 * The player wants to see how quickly they can guess a word
-* The player wants to see a landing page with instructions on how to play
-- Guess a five-letter word 
-- The player gets 6 tries with an empty box for each letter
-- If they guess correctly, get congrats message and score info
-- If they don't guess it, get message saying bad luck, try the next one
+* The player wants to see a landing page with instructions on how to play:
+  - They have to guess a five-letter word
+  - They get 6 tries with an empty box for each letter
+  - If they guess correctly, they get a congratulations message
+  - If they don't guess it, they get a message saying bad luck, try again
 * The player wants to see the keyboard and boxes clearly (labelled + clickable) 
 * The player wants visual feedback on:
-- corrent/incorrect guesses
-- when the game is over, the correct answer, and if they can play again
+  - Correct/incorrect guesses
+  - When the game is over
+  - What the correct answer was
+  - If they can play again
 
 Then I created a basic UX design in Figma (including the chosen font and colour scheme): 
 
