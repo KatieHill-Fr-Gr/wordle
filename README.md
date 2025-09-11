@@ -53,9 +53,9 @@ Finally, I wrote the pseudocode in order to plan out the game logic. My aim here
 
 * Timeframe: 4 days to build, 1 day to test/debug
 
-I followed the flow of the game, so I started by coding the game initalisation or setUp() function and then the user input (selecting and deleting keys). 
+For frontend development, I work best with a visual in front of me (which is why I always like to start with a UX design in Figma rather than a more basic wireframe). For this reason, I created  the layout and style sheet first before moving on to the game’s core functionalities. 
 
-I then started on the comparison logic (comparing the guessed word with the correct word and matching up the letters). 
+I then followed the flow of the game, starting with the game initialisation or setUp() function and the user input functions (selecting and deleting letters). Once these were in place, I tackled the comparison logic (checking the guessed word against the correct word and matching up the letters). With the basic functionality in place, I focused on making the game as user-friendly as possible with flash messages, box-flip animations, and the option to type the letters on the user’s keyboard. 
 
 
 
@@ -65,11 +65,11 @@ Writing the functions to check for matching letters was quite straightforward. H
 
 ![Multiple Letter Solution](https://res.cloudinary.com/dh0z1a9nd/image/upload/v1757599133/Wordle_MultipleLettersSolution_yahsd6.png)
 
-Another challenge was adding the keydown event listener to allow the player to type their guess using their own keyboard instead of clicking the one on the screen. This additional feature made the game much more accessible and user-friendly but involved adding several conditions to the event listener to ignore all other keys on the keyboard except the letters, delete/backspace, and enter keys. I also had to use the blur() method to prevent the play button remaining the focus and e.preventDefault() to prevent the browser's default behaviour from interfering with the key presses:
+Another challenge was adding the keydown event listener to allow the player to type their guess using their own keyboard instead of clicking the one on the screen. This additional feature made the game much more accessible and user-friendly but involved adding several conditions to the event listener to ignore all other keys on the keyboard except the letter, delete/backspace and enter keys. I also had to use the blur() method to prevent the play button remaining the focus and e.preventDefault() to prevent the browser's default behaviour from interfering with the key presses:
 
 ![Keydown Event Listener](https://res.cloudinary.com/dh0z1a9nd/image/upload/v1757600187/Wordle_KeydownEventListener_pzuzpx.png)
 
-Finally, many edge cases came up during UAT and I had to implement fixes for these (to prevent the player from deleting their previous guess, from typing letters before the correct word was set, and from typing letters after they had guessed correctly). I did this by adding booleans (winner, gameStart, gameEnd, alreadyGuessed etc.) to return immediately out of the relevant functions if these conditions were true (or false):  
+Finally, many edge cases came up during UAT and I had to implement fixes for these (to prevent the player from deleting their previous guess, from typing letters before the correct word was set, and from typing letters after they had guessed correctly). I did this by adding booleans (winner, gameStart, gameEnd, alreadyGuessed etc.) to return immediately out of the relevant functions if these conditions were met:  
 
 ![Edge Cases](https://res.cloudinary.com/dh0z1a9nd/image/upload/v1757600464/Wordle_EdgeCases_e1ncl4.png)
 
@@ -80,6 +80,9 @@ I spent a lot of time planning how to store the correct words and compare them t
 
 ## Future Improvements
 
-* Score (including guess distribution)
+Ideally, the game would keep a running total of the player's scores. It would also include a welcome page/game over page to make the layout easier to fit onto one screen for smaller devices (although it does have a responsive layout that means it can be played relatively easily on tablets and mobile phones). 
+
+* Player scores (including guess distribution)
 * Start and end screens to make it more user-friendly
+* Dark mode 
 
