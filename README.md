@@ -65,7 +65,7 @@ Finally, I wrote the pseudocode in order to plan out the game logic. My aim here
 
 * Timeframe: 4 days to build, 1 day to test/debug
 
-For frontend development, I work best with a visual in front of me (which is why I always like to start with a UX design in Figma rather than a more basic wireframe). For this reason, I created  the layout and style sheet first before moving on to the game’s core functionalities. 
+For frontend development, I work best with a visual in front of me (which is why I like to create a UI design and plan out all the styling in Figma). For this reason, I created  the layout and style sheet first before moving on to the game’s core functionalities. 
 
 I then followed the flow of the game, starting with the game initialisation or setUp() function and the user input functions (selecting and deleting letters). Once these were in place, I tackled the comparison logic (checking the guessed word against the correct word and matching up the letters). With the basic functionality in place, I focused on making the game as user-friendly as possible with flash messages, box-flip animations, and the option to type the letters on the user’s keyboard. 
 
