@@ -1,7 +1,7 @@
-# WORDLE
+# WORDLE - A DECEPTIVELY SIMPLE BROWSER-BASED GAME
 by Katie Hill
 
-<img width="952" height="692" alt="Wordle_live" src="https://github.com/user-attachments/assets/72e6623b-11a0-4a3c-b062-ce8af5809d98" />
+![Wordle_live 2](https://github.com/user-attachments/assets/8d151a6b-c07a-4ddf-96c3-339ffc9ced95)
 
 
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" 
