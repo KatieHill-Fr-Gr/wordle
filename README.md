@@ -1,4 +1,4 @@
-# WORDLE - A DECEPTIVELY SIMPLE BROWSER-BASED GAME
+# WORDLE - A deceptively simple browser-based game
 by Katie Hill
 
 ![Wordle_live 2](https://github.com/user-attachments/assets/8d151a6b-c07a-4ddf-96c3-339ffc9ced95)
