@@ -18,13 +18,15 @@ by Katie Hill
 
 ## About
 
-This is a fiendishly difficult Wordle game inspired by the New York Times version: https://www.nytimes.com/games/wordle/index.html. Unlike other Wordle games, you can play as many times as you like (you’re not limited to one game per day) and you can submit guesses that aren’t real words. The game relies on a fixed word list which is hardcoded in the data.js file. This can be extended and/or customised if necessary. 
+This is a fiendishly difficult Wordle clone inspired by the New York Times version: https://www.nytimes.com/games/wordle/index.html. Unlike other Wordle games, you can play as many times as you like (you’re not limited to one game per day) and you can submit guesses that aren’t real words. The game relies on a fixed word list which is hardcoded in the data.js file. This can be extended and/or customised if necessary. 
+
+This was the first project on my General Assembly Software Engineering Bootcamp. It involved thinking through the game logic and finding solutions to multiple edge cases as well as the tricky functionality of multiple letters.
 
 You can play the game here: https://katiehill-fr-gr.github.io/wordle/
 
 ## Brief
 
-This was the first project on my General Assembly Software Engineering Bootcamp. The brief was to build a browser-based game that met the following criteria:
+For context, the brief was to build a browser-based game that met the following criteria:
 
 * Render the game in the browser using DOM manipulation techniques.
 * Include win/loss logic and render win/loss messages in HTML. 
