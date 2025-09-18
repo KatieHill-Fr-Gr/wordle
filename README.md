@@ -1,6 +1,9 @@
 # WORDLE
 by Katie Hill
 
+<img width="952" height="692" alt="Wordle_live" src="https://github.com/user-attachments/assets/72e6623b-11a0-4a3c-b062-ce8af5809d98" />
+
+
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" 
      alt="JavaScript" width="40" height="40"/>
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original-wordmark.svg" 
@@ -8,17 +11,20 @@ by Katie Hill
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original-wordmark.svg" 
      alt="HTML" width="40" height="40"/>
 
+## Timeframe
+
+- **Duration** 5 days
+- **Team** none
+
 ## About
 
-This was the first project on the GA Software Engineering Bootcamp. The task was to build a browser-based game and I chose to create a Wordle clone using the New York Times Wordle as inspiration: https://www.nytimes.com/games/wordle/index.html
-
-The idea is to guess a five-letter word by selecting letters from the on-screen keyboard. You can either click on the letter you want or type it on your device. If a letter matches the correct word, the box will turn green. If the letter matches another letter in the word, the box will turn purple. You get 6 guesses before the game is over. If you want to play again, just click play and the game will reset (you’re not limited to one game per day like other Wordle games).
+This is a fiendishly difficult Wordle game inspired by the New York Times version: https://www.nytimes.com/games/wordle/index.html. Unlike other Wordle games, you can play as many times as you like (you’re not limited to one game per day) and you can submit guesses that aren’t real words. The game relies on a fixed word list which is hardcoded in the data.js file. This can be extended and/or customised if necessary. 
 
 You can play the game here: https://katiehill-fr-gr.github.io/wordle/
 
 ## Brief
 
-The brief was to build a minimum viable product (MVP) that met the following criteria:
+This was the first project on my General Assembly Software Engineering Bootcamp. The brief was to build a browser-based game that met the following criteria:
 
 * Render the game in the browser using DOM manipulation techniques.
 * Include win/loss logic and render win/loss messages in HTML. 
