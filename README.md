@@ -61,35 +61,29 @@ Finally, I wrote the pseudocode in order to plan out the game logic. My aim here
 
 #### 1) Mobile-Responsive Layout
 
-The first task was to create the basic layout in HTML and CSS based on the Figma design. mobile-responsive.
+The first task was to create the basic layout in HTML and CSS based on the Figma design. I made this mobile-responsive.
 
-
-
-#### Core Functionalities 
+#### 2) Core Logic
 
 I then focused on the the game’s core functionalities, starting with the game initialisation or setUp() function and the user input functions (selecting and deleting letters). 
-
 Once these were in place, I tackled the comparison logic (checking the guessed word against the correct word and matching up the letters). 
 
 
-Make the game as user-friendly as possible with flash messages, box-flip animations, and
+#### 3) User Feedback
+
+Make the game as user-friendly as possible with flash messages and box-flip animations when the correct/incorrect letters are revealed.
 
 
-#### 5) Keyboard Input
+#### 3) Keyboard Input
 
-I added a keydown event listener to allow the player to type their guess using their own keyboard instead of clicking on the on-screen keys. The 
-
-
-
-
-I had to add several conditions to the event listener to ignore all other keys on the keyboard except the letter, delete/backspace and enter keys:
+I added a keydown event listener to allow the player to type their guesses using the keyboard on their device. This involved adding several conditions to ignore all other keys on the keyboard except the letter, delete/backspace and enter keys: 
 
 ![Keydown Event Listener](https://res.cloudinary.com/dh0z1a9nd/image/upload/v1757600187/Wordle_KeydownEventListener_pzuzpx.png)
 
 
 ### Challenges
 
-1) Tracking Letter Frequencies
+#### 1) Tracking Letter Frequencies
 
 Making sure each letter was only highlighted once was tricky. For example, if the word to guess contained one “e” and the user’s guess contained two “e”s, only one of the “e”s should be counted. To solve this, I added two new variables to the CheckForDiffPosition() function: 
 
@@ -104,13 +98,12 @@ I also added a variable to the CheckForMatch() function to keep track of matched
 
 In both cases, I used boolean gates to keep the functions as short and readable as possible.
 
-2) Keyboard Input
+#### 2) Keyboard Input
 
 The key presses bubbled up the DOM and triggered some of the clickable elements on the page (the “Play” button in particular). To prevent this unexpected behaviour, I used the blur() method to stop the “Play” button remaining the focus and also added e.preventDefault() to prevent the browser’s default behaviour.  
 
 
-
-3) Invalid Guesses
+#### 3) Invalid Guesses
 
 Finally, many edge cases came up during UAT and I had to implement fixes for these (to prevent the player from deleting their previous guess, from typing letters before the correct word was set, and from typing letters after they had guessed correctly). I did this by adding booleans (winner, gameStart, gameEnd, alreadyGuessed etc.) to return immediately out of the relevant functions if these conditions were met:  
 
