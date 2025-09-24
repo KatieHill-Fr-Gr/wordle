@@ -129,7 +129,7 @@ The key presses bubbled up the DOM and triggered some of the clickable elements 
 
 #### 3) Invalid Guesses 
 
-Finally, I had to implement a few safeguards to prevent the player from typing:
+Finally, I had to implement a few safeguards to prevent the player from typing at certain times:
 
 - **Before the game had initialised** (and the word to guess had been set)
 - **In rows that had already been submitted** (to prevent the player from deleting their previous guess)
@@ -153,7 +153,7 @@ The games works as expected and there are no bugs.
 
 ## Key Learnings
 
-This project helped me gain a thorough understanding of DOM maniupation techniques and develop my approach to problem-solving, from writing the pseudocode during the planning stage to tackling specific challenges that came up during the build. I had to implement several fixes during user testing (to prevent the player from typing when they shouldn't etc.) which highlighted the importance of considering edge cases during planning.   
+This project helped me gain a thorough understanding of DOM maniupation techniques and develop my approach to problem-solving, from writing the pseudocode during the planning stage to tackling specific challenges that came up during the build. I had to implement several fixes during user testing to prevent the player from typing when they shouldn't. Ideally, I'd have considered these edge cases during planning.   
 
 ## Future Improvements
 
