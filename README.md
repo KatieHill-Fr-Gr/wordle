@@ -61,7 +61,7 @@ I considered the best way to store the words to guess (as an array of strings or
 
 #### 1) Core Layout & Logic
 
-The first task was to create the grid layout and on-screen keyboard based on the Figma design. I then focused on the the game’s core functionalities, starting with the game initialisation or setUp() function, user input (selecting and deleting letters), and how move through the boxes and rows: 
+The first task was to create the grid layout and on-screen keyboard based on the Figma design. I then focused on the the game’s core functionalities, starting with the game initialisation or setUp() function, user input (selecting and deleting letters), and how to move through the boxes and rows: 
 
 <img width="653" height="190" alt="Wordle_selectletter" src="https://github.com/user-attachments/assets/61d77363-6369-45e0-aa2f-65530c9b460b" />
 
@@ -73,7 +73,7 @@ Once these core functions were in place, I tackled the comparison logic (checkin
 
 #### 2) User Feedback
 
-I made the game as user-friendly as possible with flash messages and box-flip animations when revealing correct and incorrect letters after submitting each guess:
+I made the game as user-friendly as possible with flash messages and box-flip animations when revealing correct and incorrect letters after submitting the guess:
 
 <img width="648" height="128" alt="Wordle_userfeedback" src="https://github.com/user-attachments/assets/25597aa4-3007-426f-b212-8b201a8510d5" />
 
