@@ -37,9 +37,9 @@ First, I wrote user stories which I used as a basis for designing my game:
 * The player wants to see a landing page with instructions on how to play:
   - They have to guess a five-letter word
   - They get 6 tries with an empty box for each letter
-  - If they guess correctly, they get a congratulations message
+  - If they guess correctly, they get a message congratulating them
   - If they don't guess it, they get a message saying bad luck, try again
-* The player wants to see the keyboard and boxes clearly (labelled + clickable) 
+* The player wants to see a keyboard displayed on the page (clearly labelled + clickable) 
 * The player wants visual feedback on:
   - Correct/incorrect guesses
   - When the game is over
@@ -59,17 +59,16 @@ Finally, I wrote the pseudocode in order to plan out the game logic. My aim here
 
 ## Build
 
-#### 1) Mobile-Responsive Layout
+#### 1) Core Layout & Logic
 
 The first task was to create the basic layout in HTML and CSS based on the Figma design. I made this mobile-responsive.
 
-#### 2) Core Logic
 
 I then focused on the the game’s core functionalities, starting with the game initialisation or setUp() function and the user input functions (selecting and deleting letters). 
 Once these were in place, I tackled the comparison logic (checking the guessed word against the correct word and matching up the letters). 
 
 
-#### 3) User Feedback
+#### 2) User Feedback
 
 Make the game as user-friendly as possible with flash messages and box-flip animations when the correct/incorrect letters are revealed.
 
@@ -78,7 +77,9 @@ Make the game as user-friendly as possible with flash messages and box-flip anim
 
 I added a keydown event listener to allow the player to type their guesses using the keyboard on their device. This involved adding several conditions to ignore all other keys on the keyboard except the letter, delete/backspace and enter keys: 
 
-![Keydown Event Listener](https://res.cloudinary.com/dh0z1a9nd/image/upload/v1757600187/Wordle_KeydownEventListener_pzuzpx.png)
+![Wordle_KeydownEventListener](https://github.com/user-attachments/assets/dcc05e25-cec2-414c-821a-e7e3d4858cbf)
+
+#### 4) Mobile-Responsive Layout
 
 
 ### Challenges
@@ -98,9 +99,11 @@ I also added a variable to the CheckForMatch() function to keep track of matched
 
 In both cases, I used boolean gates to keep the functions as short and readable as possible.
 
-#### 2) Keyboard Input
+#### 2) Keyboard Event Bubbling
 
-The key presses bubbled up the DOM and triggered some of the clickable elements on the page (the “Play” button in particular). To prevent this unexpected behaviour, I used the blur() method to stop the “Play” button remaining the focus and also added e.preventDefault() to prevent the browser’s default behaviour.  
+The key presses bubbled up the DOM and triggered some of the clickable elements on the page (the “Play” button in particular). To prevent this unexpected behavior, I used the blur() method to remove focus from the “Play” button after it was clicked. I also prevented the browser’s default behaviour by adding e.preventDefault() to the keydown event listener.
+
+![Wordle_PlayButtonBlur](https://github.com/user-attachments/assets/83e7306e-c319-4293-9c0f-b68a492aa0f5)
 
 
 #### 3) Invalid Guesses
@@ -118,11 +121,11 @@ Finally, many edge cases came up during UAT and I had to implement fixes for the
 
 ## Key Learnings
 
-I spent a lot of time planning how to store the correct words and compare them to the user input. In hindsight, I would have spent more time thinking about the edge cases at the start of the project (how to move through the rows and limit when and where the player could type) to avoid having to do so many fixes during UAT.
+This project helped me gain a thorough understanding of DOM maniupation techniques and develop my approach to problem-solving. 
 
 ## Future Improvements
 
-Ideally, the game would keep a running total of the player's scores. It would also include a welcome page/game over page to make the layout easier to fit onto one screen for smaller devices (although it does have a responsive layout that means it can be played relatively easily on tablets and mobile phones). 
+Ideally, the game would keep a running total of the player's scores. It would also include a welcome page and a game over page so that the game itself fit more neatly on smaller screens (although it does have a responsive layout that means it can be played relatively easily on mobile devices). 
 
 * Player scores (including guess distribution)
 * Start and end screens to make it more user-friendly
