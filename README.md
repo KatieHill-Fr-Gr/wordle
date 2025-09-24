@@ -20,10 +20,9 @@ by Katie Hill
 
 This is a Wordle clone inspired by the New York Times Wordle: https://www.nytimes.com/games/wordle/index.html. Unlike the NYT version, you can play it as many times as you like and submit guesses that aren’t real words. The game relies on a fixed word list which is hardcoded in the data.js file (this can be extended or customised if required).  
 
-This was the first project on my General Assembly Software Engineering Bootcamp. Our brief was to build a browser-based game in HTML, CSS and JavaScript using DOM manipulation techniques. Although the game is relatively simple to play (guess the letters of a five-letter word), the game logic and multiple edge cases presented some interesting challenges during the build. Tackling the guess evaluation logic was more complicated than simply meeting win/loss conditions and handling repeated letters was also tricky. 
+This was the first project on my General Assembly Software Engineering Bootcamp. Our brief was to build a browser-based game in HTML, CSS and JavaScript using DOM manipulation techniques. Although the game is relatively simple to play (guess a five-letter word), the game logic and multiple edge cases presented some interesting challenges during the build. Tackling the guess evaluation logic was more complicated than simply meeting win/loss conditions and handling repeated letters was also tricky. 
 
 You can play the game here: https://katiehill-fr-gr.github.io/wordle/
-
 
 
 ## Planning
@@ -36,7 +35,7 @@ First, I wrote user stories which I used as a basis for designing my game:
 * The player wants to see how quickly they can guess a word
 * The player wants to see a landing page with instructions on how to play:
   - They have to guess a five-letter word
-  - They get 6 tries with an empty box for each letter
+  - They get six tries with an empty box for each letter
   - If they guess correctly, they get a message congratulating them
   - If they don't guess it, they get a message saying bad luck, try again
 * The player wants to see a keyboard displayed on the page (clearly labelled + clickable) 
@@ -46,31 +45,50 @@ First, I wrote user stories which I used as a basis for designing my game:
   - What the correct answer was
   - If they can play again
 
-Then I created a basic UI design in Figma (including the chosen font and colour scheme): 
+I then created a basic UI design in Figma: 
 
 ![Figma Design](https://res.cloudinary.com/dh0z1a9nd/image/upload/v1757583851/Wordle_a6c739.jpg)
 
 
-Finally, I wrote the pseudocode in order to plan out the game logic. My aim here was just to get an idea of the main functions, variables, and datasets I would need. I considered the best way to store the words to guess (as an array of strings or separated into individual letters in nested arrays) and also listed the cached element references and event listeners based on the expected user interactions.
+Finally, I wrote the pseudocode in order to plan out the game logic. My aim here was just to get an idea of the main functions, variables, and datasets I would need:
 
-![Functions Pseudocode](https://res.cloudinary.com/dh0z1a9nd/image/upload/v1757597978/Wordle_pseudocode_variables_wrcewz.png)
 ![Functions Pseudocode](https://res.cloudinary.com/dh0z1a9nd/image/upload/v1757594381/Wordle_pseudocode_functions_vflgsn.png)
+
+I considered the best way to store the words to guess (as an array of strings or separated into individual letters in nested arrays) and also listed the cached element references and event listeners based on the expected user interactions.
 
 
 ## Build
 
 #### 1) Core Layout & Logic
 
-The first task was to create the basic layout in HTML and CSS based on the Figma design. I made this mobile-responsive.
+The first task was to create the grid layout and on-screen keyboard based on the Figma design. I then focused on the the game’s core functionalities, starting with the game initialisation or setUp() function, user input (selecting and deleting letters), and how move through the boxes and rows: 
 
+<img width="653" height="190" alt="Wordle_selectletter" src="https://github.com/user-attachments/assets/61d77363-6369-45e0-aa2f-65530c9b460b" />
 
-I then focused on the the game’s core functionalities, starting with the game initialisation or setUp() function and the user input functions (selecting and deleting letters). 
-Once these were in place, I tackled the comparison logic (checking the guessed word against the correct word and matching up the letters). 
+Once these core functions were in place, I tackled the comparison logic (checking the guessed word against the correct word and matching up the letters):
+
+<img width="630" height="273" alt="Wordle_comparisonlogic" src="https://github.com/user-attachments/assets/f8adb924-4515-48dc-b751-77b088c7a017" />
+
 
 
 #### 2) User Feedback
 
-Make the game as user-friendly as possible with flash messages and box-flip animations when the correct/incorrect letters are revealed.
+I made the game as user-friendly as possible with flash messages and box-flip animations when revealing correct and incorrect letters after submitting each guess:
+
+<img width="648" height="128" alt="Wordle_userfeedback" src="https://github.com/user-attachments/assets/25597aa4-3007-426f-b212-8b201a8510d5" />
+
+
+#### 3) Game Flow
+
+I managed the game states using the following variables: 
+
+- winner
+- gameStart
+- gameEnd
+- guessAlreadySubmitted
+
+<img width="636" height="246" alt="Wordle_gamestates" src="https://github.com/user-attachments/assets/2bf3cbfa-e3a2-423c-8f36-baaab1fbb2b6" />
+
 
 
 #### 3) Keyboard Input
@@ -80,6 +98,10 @@ I added a keydown event listener to allow the player to type their guesses using
 ![Wordle_KeydownEventListener](https://github.com/user-attachments/assets/dcc05e25-cec2-414c-821a-e7e3d4858cbf)
 
 #### 4) Mobile-Responsive Layout
+
+The game is most likely to be played on mobile devices so it was important to take this into account. The narrow design is ideal for smaller screens and the sticky keyboard means players always have access to the letter keys for faster gameplay:
+
+<img width="649" height="333" alt="Wordle_mobileresponsive" src="https://github.com/user-attachments/assets/5667521a-ada6-4366-97cb-d4b39db94583" />
 
 
 ### Challenges
@@ -105,23 +127,33 @@ The key presses bubbled up the DOM and triggered some of the clickable elements 
 
 ![Wordle_PlayButtonBlur](https://github.com/user-attachments/assets/83e7306e-c319-4293-9c0f-b68a492aa0f5)
 
+#### 3) Invalid Guesses 
 
-#### 3) Invalid Guesses
+Finally, I had to implement a few safeguards to prevent the player from typing:
 
-Finally, many edge cases came up during UAT and I had to implement fixes for these (to prevent the player from deleting their previous guess, from typing letters before the correct word was set, and from typing letters after they had guessed correctly). I did this by adding booleans (winner, gameStart, gameEnd, alreadyGuessed etc.) to return immediately out of the relevant functions if these conditions were met:  
+- **Before the game had initialised** (and the word to guess had been set)
+- **In rows that had already been submitted** (to prevent the player from deleting their previous guess)
+- **After they had correctly guessed the word** (and the game had ended)
+
+I did this by adding boolean checks to return immediately out of the relevant functions depending on the game state: 
 
 ![Edge Cases](https://res.cloudinary.com/dh0z1a9nd/image/upload/v1757600464/Wordle_EdgeCases_e1ncl4.png)
 
 
 ### Wins
 
-- 
-- Keyboard input: this additional feature was very successful and made the game more accessible and user-friendly on desktop.
+* Mobile-first design: this approach resulted in a sleek, responsive UI that was perfectly adapted to smaller screens.
+* Boolean checks: strictly controlling user input ensures that the gameplay is smooth and provides a great user experience.
+* Keyboard input: this additional feature enhanced the game, making it more accessible and user-friendly on desktop.
+
+## Bugs
+
+The games works as expected and there are no bugs.
 
 
 ## Key Learnings
 
-This project helped me gain a thorough understanding of DOM maniupation techniques and develop my approach to problem-solving. 
+This project helped me gain a thorough understanding of DOM maniupation techniques and develop my approach to problem-solving, from writing the pseudocode during the planning stage to tackling specific challenges that came up during the build. I had to implement several fixes during user testing (to prevent the player from typing when they shouldn't etc.) which highlighted the importance of considering edge cases during planning.   
 
 ## Future Improvements
 
