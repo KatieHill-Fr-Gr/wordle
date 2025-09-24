@@ -67,6 +67,7 @@ function clearGuesses() {
 function setCorrectWord() {
     const randomIdx = Math.floor(Math.random() * words.length);
     correctWord = words[randomIdx];
+    console.log("New word selected:", correctWord);
 }
 
 function startCorrectWordCount() {
