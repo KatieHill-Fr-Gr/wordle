@@ -13,29 +13,17 @@ by Katie Hill
 
 ## Timeframe
 
-- **Duration** 5 days
-- **Team** none
+- **Duration** 5 days (4 days to build and 1 day to test)
+- **Team** This was a solo project
 
 ## About
 
-This is a fiendishly difficult Wordle clone inspired by the New York Times version: https://www.nytimes.com/games/wordle/index.html. Unlike other Wordle games, you can play as many times as you like (you’re not limited to one game per day) and you can submit guesses that aren’t real words. The game relies on a fixed word list which is hardcoded in the data.js file. This can be extended and/or customised if necessary. 
+This is a Wordle clone inspired by the New York Times Wordle: https://www.nytimes.com/games/wordle/index.html. Unlike the NYT version, you can play it as many times as you like and submit guesses that aren’t real words. The game relies on a fixed word list which is hardcoded in the data.js file (this can be extended or customised if required).  
 
-This was the first project on my General Assembly Software Engineering Bootcamp. It involved thinking through the game logic and finding solutions to multiple edge cases as well as the tricky functionality of multiple letters.
+This was the first project on my General Assembly Software Engineering Bootcamp. Our brief was to build a browser-based game in HTML, CSS and JavaScript using DOM manipulation techniques. Although the game is relatively simple to play (guess the letters of a five-letter word), the game logic and multiple edge cases presented some interesting challenges during the build. Tackling the guess evaluation logic was more complicated than simply meeting win/loss conditions and handling repeated letters was also tricky. 
 
 You can play the game here: https://katiehill-fr-gr.github.io/wordle/
 
-## Brief
-
-For context, the brief was to build a browser-based game that met the following criteria:
-
-* Render the game in the browser using DOM manipulation techniques.
-* Include win/loss logic and render win/loss messages in HTML. 
-* Include separate HTML, CSS, JavaScript, and JavaScript data files organized in an appropriate directory structure.
-* Include all required features specific to your game:
-   - On-screen keyboard displayed
-   - Guessed letters styled based on their status
-   - Animated tiles on letter reveal
-* The game must be deployed online so that the rest of the world can play it.
 
 
 ## Planning
@@ -71,27 +59,68 @@ Finally, I wrote the pseudocode in order to plan out the game logic. My aim here
 
 ## Build
 
-* Timeframe: 4 days to build, 1 day to test/debug
+#### 1) Mobile-Responsive Layout
 
-For frontend development, I work best with a visual in front of me (which is why I like to create a UI design and plan out all the styling in Figma). For this reason, I created  the layout and style sheet first before moving on to the game’s core functionalities. 
+The first task was to create the basic layout in HTML and CSS based on the Figma design. mobile-responsive.
 
-I then followed the flow of the game, starting with the game initialisation or setUp() function and the user input functions (selecting and deleting letters). Once these were in place, I tackled the comparison logic (checking the guessed word against the correct word and matching up the letters). With the basic functionality in place, I focused on making the game as user-friendly as possible with flash messages, box-flip animations, and the option to type the letters on the user’s keyboard. 
 
+
+#### Core Functionalities 
+
+I then focused on the the game’s core functionalities, starting with the game initialisation or setUp() function and the user input functions (selecting and deleting letters). 
+
+Once these were in place, I tackled the comparison logic (checking the guessed word against the correct word and matching up the letters). 
+
+
+Make the game as user-friendly as possible with flash messages, box-flip animations, and
+
+
+#### 5) Keyboard Input
+
+I added a keydown event listener to allow the player to type their guess using their own keyboard instead of clicking on the on-screen keys. The 
+
+
+
+
+I had to add several conditions to the event listener to ignore all other keys on the keyboard except the letter, delete/backspace and enter keys:
+
+![Keydown Event Listener](https://res.cloudinary.com/dh0z1a9nd/image/upload/v1757600187/Wordle_KeydownEventListener_pzuzpx.png)
 
 
 ### Challenges
 
-Writing the functions to check for matching letters was quite straightforward. However, making sure each letter was only highlighted once based on its status was quite difficult. To solve this, I added two new variables to keep a count of a) the matched letters in each guess and b) the number of a times a letter appeared in the correct word. I then added these to the two functions using boolean gates to keep the functions as short and readable as possible:
+1) Tracking Letter Frequencies
+
+Making sure each letter was only highlighted once was tricky. For example, if the word to guess contained one “e” and the user’s guess contained two “e”s, only one of the “e”s should be counted. To solve this, I added two new variables to the CheckForDiffPosition() function: 
+
+- frequencyInWord to track the number of times a letter appeared
+- alreadyMatched to check if it had been matched already
 
 ![Multiple Letter Solution](https://res.cloudinary.com/dh0z1a9nd/image/upload/v1757599133/Wordle_MultipleLettersSolution_yahsd6.png)
 
-Another challenge was adding the keydown event listener to allow the player to type their guess using their own keyboard instead of clicking the one on the screen. This additional feature made the game much more accessible and user-friendly but involved adding several conditions to the event listener to ignore all other keys on the keyboard except the letter, delete/backspace and enter keys. I also had to use the blur() method to prevent the play button remaining the focus and e.preventDefault() to prevent the browser's default behaviour from interfering with the key presses:
+I also added a variable to the CheckForMatch() function to keep track of matched letters: 
 
-![Keydown Event Listener](https://res.cloudinary.com/dh0z1a9nd/image/upload/v1757600187/Wordle_KeydownEventListener_pzuzpx.png)
+![Wordle_guessMatchCount](https://github.com/user-attachments/assets/4bd3a1f8-179a-4bdb-a9c4-54b90d76b68e)
+
+In both cases, I used boolean gates to keep the functions as short and readable as possible.
+
+2) Keyboard Input
+
+The key presses bubbled up the DOM and triggered some of the clickable elements on the page (the “Play” button in particular). To prevent this unexpected behaviour, I used the blur() method to stop the “Play” button remaining the focus and also added e.preventDefault() to prevent the browser’s default behaviour.  
+
+
+
+3) Invalid Guesses
 
 Finally, many edge cases came up during UAT and I had to implement fixes for these (to prevent the player from deleting their previous guess, from typing letters before the correct word was set, and from typing letters after they had guessed correctly). I did this by adding booleans (winner, gameStart, gameEnd, alreadyGuessed etc.) to return immediately out of the relevant functions if these conditions were met:  
 
 ![Edge Cases](https://res.cloudinary.com/dh0z1a9nd/image/upload/v1757600464/Wordle_EdgeCases_e1ncl4.png)
+
+
+### Wins
+
+- 
+- Keyboard input: this additional feature was very successful and made the game more accessible and user-friendly on desktop.
 
 
 ## Key Learnings
