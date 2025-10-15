@@ -22,7 +22,7 @@ This is a Wordle clone inspired by the New York Times Wordle: https://www.nytime
 
 This was the first project on my General Assembly Software Engineering Bootcamp. Our brief was to build a browser-based game in HTML, CSS and JavaScript using DOM manipulation techniques. Although the game is relatively simple to play (guess a five-letter word), the game logic and multiple edge cases presented some interesting challenges during the build. Tackling the guess evaluation logic was more complicated than simply meeting win/loss conditions and handling repeated letters was also tricky. 
 
-You can play the game here: https://katiehill-fr-gr.github.io/wordle/
+You can play the game here: https://katiehill-fr-gr.github.io/Wordle/
 
 
 ## Planning
