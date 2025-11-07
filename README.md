@@ -182,7 +182,16 @@ function submitGuess() {
 
 I made the game as user-friendly as possible with flash messages and box-flip animations when revealing correct and incorrect letters after submitting the guess:
 
-<img width="648" height="128" alt="Wordle_userfeedback" src="https://github.com/user-attachments/assets/25597aa4-3007-426f-b212-8b201a8510d5" />
+```
+function checkForMatch() {
+    selectedLetters.forEach((letter, index) => {
+        if (letter === correctWord[index]) {
+            currentRow[index].classList.add("match", "animation", "box-flip", "flipped");
+            guessMatchCount[letter] = (guessMatchCount[letter] || 0) + 1;
+        }
+    })
+}
+```
 
 
 #### 3) Game Flow
@@ -194,7 +203,19 @@ I managed the game states using the following variables:
 - gameEnd
 - guessAlreadySubmitted
 
-<img width="636" height="246" alt="Wordle_gamestates" src="https://github.com/user-attachments/assets/2bf3cbfa-e3a2-423c-8f36-baaab1fbb2b6" />
+```
+function setUp() {
+    messageEl.textContent = "";
+    clearGuesses()
+    setCorrectWord()
+    startCorrectWordCount()
+    winner = false;
+    gameEnd = false;
+    gameStart = true;
+    guessAlreadySubmitted = false;
+    wordLength = correctWord.length;
+}
+```
 
 
 
@@ -202,14 +223,47 @@ I managed the game states using the following variables:
 
 I added a keydown event listener to allow the player to type their guesses using the keyboard on their device. This involved adding several conditions to ignore all other keys on the keyboard except the letter, delete/backspace and enter keys: 
 
-![Wordle_KeydownEventListener](https://github.com/user-attachments/assets/dcc05e25-cec2-414c-821a-e7e3d4858cbf)
+```
+document.addEventListener("keydown", function (e) {
+    if (gameStart === false || gameEnd === true) {
+        return;
+    }
+    if (e.target.tagName.toUpperCase() === "BUTTON") {
+        return;
+    }
+    if (e.key.length === 1 && e.key.match(/[a-zA-Z]/)) {
+        selectLetter(e);
+        e.preventDefault();
+    } else if (e.key === "Enter") {
+        submitGuess(e);
+        e.preventDefault();
+    } else if (e.key === "Backspace" || e.key === "Delete") {
+        deleteLetter(e);
+        e.preventDefault();
+    }
+});
+```
 
 #### 4) Mobile-Responsive Layout
 
 The game is most likely to be played on mobile devices so it was important to take this into account. The narrow design is ideal for smaller screens and the sticky keyboard means players always have access to the letter keys for faster gameplay:
 
-<img width="649" height="333" alt="Wordle_mobileresponsive" src="https://github.com/user-attachments/assets/5667521a-ada6-4366-97cb-d4b39db94583" />
-
+```
+@media only screen and (max-width: 480px) {
+    #keyboard {
+        position: sticky;
+        bottom: 0;
+        background-color: white;
+        z-index: 10;
+        gap: 0.25rem;
+        margin: 1rem auto;
+        font-size: 0.8rem;
+    }
+    #keyboard .row {
+        gap: 0.25rem;
+    }
+}
+```
 
 ### Challenges
 
@@ -220,11 +274,33 @@ Making sure each letter was only highlighted once was tricky. For example, if th
 - frequencyInWord to track the number of times a letter appeared
 - alreadyMatched to check if it had been matched already
 
-![Multiple Letter Solution](https://res.cloudinary.com/dh0z1a9nd/image/upload/v1757599133/Wordle_MultipleLettersSolution_yahsd6.png)
+```
+function checkForDiffPosition() {
+    selectedLetters.forEach((letter, index) => {
+        if (currentRow[index].classList.contains("match"))
+            return;
+        const alreadyMatched = guessMatchCount[letter] || 0;
+        const frequencyInWord = correctWordLetterCount[letter] || 0;
+        if (frequencyInWord > 0 && alreadyMatched < frequencyInWord) {
+            currentRow[index].classList.add("diff-position", "animation", "box-flip", "flipped");
+            guessMatchCount[letter] = alreadyMatched + 1;
+        }
+    })
+}
+```
 
 I also added a variable to the CheckForMatch() function to keep track of matched letters: 
 
-![Wordle_guessMatchCount](https://github.com/user-attachments/assets/4bd3a1f8-179a-4bdb-a9c4-54b90d76b68e)
+```
+function checkForMatch() {
+    selectedLetters.forEach((letter, index) => {
+        if (letter === correctWord[index]) {
+            currentRow[index].classList.add("match", "animation", "box-flip", "flipped");
+            guessMatchCount[letter] = (guessMatchCount[letter] || 0) + 1;
+        }
+    })
+}
+```
 
 In both cases, I used boolean gates to keep the functions as short and readable as possible.
 
@@ -232,7 +308,12 @@ In both cases, I used boolean gates to keep the functions as short and readable 
 
 The key presses bubbled up the DOM and triggered some of the clickable elements on the page (the “Play” button in particular). To prevent this unexpected behavior, I used the blur() method to remove focus from the “Play” button after it was clicked. I also prevented the browser’s default behaviour by adding e.preventDefault() to the keydown event listener.
 
-![Wordle_PlayButtonBlur](https://github.com/user-attachments/assets/83e7306e-c319-4293-9c0f-b68a492aa0f5)
+```
+playButton.addEventListener("click", () => {
+    setUp();
+    playButton.blur();
+});
+```
 
 #### 3) Invalid Guesses 
 
@@ -244,8 +325,17 @@ Finally, I had to implement a few safeguards to prevent the player from typing a
 
 I did this by adding boolean checks to return immediately out of the relevant functions depending on the game state: 
 
-![Edge Cases](https://res.cloudinary.com/dh0z1a9nd/image/upload/v1757600464/Wordle_EdgeCases_e1ncl4.png)
-
+```
+function submitGuess() {
+    if (selectedLetters.length < correctWord.length) {
+        messageEl.textContent = "Make sure you guess all five letters!"
+        return;
+    }
+    if (selectedLetters.length > correctWord.length) {
+        messageEl.textContent = "You can only guess five letters!"
+        return;
+    }
+```
 
 ### Wins
 
